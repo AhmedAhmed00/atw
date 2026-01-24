@@ -1,0 +1,63 @@
+Appointments Feature Structure
+================================
+
+📁 Directory Structure:
+-----------------------
+appointments/
+├── components/
+│   ├── AppointmentCard.tsx          # Individual appointment card
+│   ├── AppointmentList.tsx          # List of appointments with empty state
+│   ├── AppointmentsHeader.tsx       # Page header with title
+│   ├── AppointmentsSearch.tsx       # Search bar component
+│   ├── AppointmentsTabs.tsx         # Tabs with counts
+│   └── index.ts                     # Component exports
+├── constants/
+│   └── appointment-status.ts        # Status configs using CSS variables
+├── data/
+│   └── mockAppointments.ts          # Mock data for development
+├── types/
+│   └── index.ts                     # TypeScript types
+├── utils/
+│   └── index.ts                     # Utility functions
+└── index.tsx                        # Main page component
+
+🎨 Features:
+------------
+✓ Clean modular structure
+✓ Uses CSS variables for theming (--brand-primary, --brand-secondary)
+✓ Shadcn tabs with custom styling
+✓ Search functionality
+✓ Status filtering (all, pending, confirmed, completed, cancelled)
+✓ Responsive design
+✓ Empty states
+✓ Type-safe with TypeScript
+
+🎯 Key Components:
+------------------
+- AppointmentsHeader: Page title and description
+- AppointmentsSearch: Search bar with icon
+- AppointmentsTabs: Custom styled tabs with counts
+- AppointmentList: Grid of appointment cards
+- AppointmentCard: Individual appointment with status badge
+
+🛠️ Utilities:
+--------------
+- filterAppointments(): Filter by status and search
+- sortAppointmentsByDate(): Sort appointments
+- groupAppointmentsByStatus(): Group by status
+- countAppointmentsByStatus(): Count by status
+
+📊 Usage:
+---------
+Import and use:
+  import AppointmentsPage from '@/features/appointments'
+  
+  <AppointmentsPage />
+
+🎨 Styling:
+-----------
+All colors use CSS variables:
+- --brand-primary (59 193 207)
+- --brand-secondary (25 116 187)
+- Status colors defined in appointment-status.ts
+

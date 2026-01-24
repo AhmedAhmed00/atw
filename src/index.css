@@ -1,0 +1,534 @@
+@import "tailwindcss";
+
+
+@custom-variant dark (&:is(.dark *));
+:root {
+  --background: oklch(0.9703 0.01 238.51);
+  --foreground: oklch(0.2500 0.0150 220);
+  --card: oklch(0.9950 0.0050 205);
+  --card-foreground: oklch(0.2500 0.0150 220);
+  --popover: oklch(0.9950 0.0050 205);
+  --popover-foreground: oklch(0.2500 0.0150 220);
+  --primary: 229 36 34;
+  --primary-foreground: 255 255 255;
+  --secondary: 151 31 30;
+  --secondary-foreground: 255 255 255;
+  --muted: oklch(0.9600 0.0120 205);
+  --muted-foreground: oklch(0.5200 0.0250 215);
+  --accent: oklch(0.9700 0.0100 205);
+  --accent-foreground: oklch(0.2500 0.0150 220);
+  --destructive: 254 53 51;
+  --destructive-foreground: 255 255 255;
+  --border: oklch(0.8900 0.0150 205);
+  --input: oklch(0.9500 0.0100 205);
+  --ring: 229 36 34;
+  
+  /* Input Variables - Standardized */
+  --input-height: 2.5rem; /* 40px / h-10 - Standard height for all inputs */
+  --input-padding-x: 0.75rem; /* 12px / px-3 */
+  --input-padding-y: 1.35rem; /* 8px / py-2 */
+  --input-border-width: 1px;
+  --input-border-color: hsl(var(--input));
+  --input-border-radius: calc(var(--radius) - 1px);
+  --input-bg: transparent;
+  --input-focus-border-color: hsl(var(--ring));
+  --input-focus-ring-width: 3px;
+  --input-focus-ring-color: hsl(var(--ring) / 0.5);
+  --input-disabled-opacity: 0.5;
+  --input-text-size: 0.875rem; /* text-sm */
+  --input-placeholder-color: hsl(var(--muted-foreground));
+  --chart-1: 229 36 34;
+  --chart-2: 151 31 30;
+  --chart-3: oklch(0.7000 0.1400 195);
+  --chart-4: oklch(0.7316 0 0);
+  --chart-5: oklch(0.4568 0 0);
+  --sidebar: 234 252 253;
+  --sidebar-foreground: 30 41 59;
+  --sidebar-primary: 9 176 182;
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 5 100 122;
+  --sidebar-accent-foreground: 255 255 255;
+  --sidebar-border: 186 245 247;
+  --sidebar-ring: 9 176 182;
+  
+  /* Brand Colors - Base (Healthcare Blue/Cyan Palette) */
+  --brand-primary: 9 176 182;      /* #09B0B6 - Primary cyan/teal */
+  --brand-secondary: 5 100 122;    /* #05647A - Dark teal */
+  --brand-gradient-from: #09B0B6;
+  --brand-gradient-to: #05647A;
+  
+  /* Brand Color Scale - Primary (Cyan/Teal) */
+  --brand-50: 234 252 253;    /* Very light cyan - #AADCF7 inspired */
+  --brand-100: 218 250 251;   /* Light cyan - #86E2DD inspired */
+  --brand-200: 186 245 247;   /* Lighter cyan - #3DCCD0 inspired */
+  --brand-300: 154 240 243;   /* Light-medium cyan */
+  --brand-400: 61 204 208;    /* Medium-light cyan - #3DCCD0 */
+  --brand-500: 9 176 182;     /* Base/Primary cyan - #09B0B6 */
+  --brand-600: 7 141 146;     /* Medium-dark cyan */
+  --brand-700: 5 100 122;     /* Dark teal - #05647A */
+  --brand-800: 4 80 98;       /* Darker teal */
+  --brand-900: 2 50 61;       /* Very dark teal */
+  
+  /* Brand Color Scale - Secondary (Blue) */
+  --brand-secondary-50: 234 247 255;    /* Very light blue - #AADCF7 */
+  --brand-secondary-100: 218 240 255;   /* Light blue - #AADCF7 */
+  --brand-secondary-200: 186 230 255;   /* Lighter blue - #63A7D8 inspired */
+  --brand-secondary-300: 154 220 255;   /* Light-medium blue */
+  --brand-secondary-400: 99 167 216;  /* Medium-light blue - #63A7D8 */
+  --brand-secondary-500: 38 107 172;     /* Base/Secondary blue - #266BAC */
+  --brand-secondary-600: 16 52 84;     /* Medium-dark blue - #103454 */
+  --brand-secondary-700: 5 100 122;      /* Dark teal - #05647A */
+  --brand-secondary-800: 4 80 98;      /* Darker teal */
+  --brand-secondary-900: 2 50 61;        /* Very dark teal */
+  
+  /* Status Colors - Light Mode */
+  --status-success: 16 185 129;
+  --status-success-dark: 5 150 105;
+  --status-warning: 245 158 11;
+  --status-warning-dark: 217 119 6;
+  --status-danger: 239 68 68;
+  --status-danger-dark: 220 38 38;
+  --status-info: 14 165 233;
+  --status-info-dark: 2 132 199;
+  
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: serif;
+  --font-mono: 'Courier New', monospace;
+  --radius: 0.5rem;
+  --shadow-x: 0rem;
+  --shadow-y: 0.1rem;
+  --shadow-blur: 0.5rem;
+  --shadow-spread: 0.1rem;
+  --shadow-opacity: 0.1;
+  --shadow-color: #000000;
+  --shadow-2xs: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.10), 0rem 1px 2px -0.9px hsl(0 0% 0% / 0.10);
+  --shadow: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.10), 0rem 1px 2px -0.9px hsl(0 0% 0% / 0.10);
+  --shadow-md: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.10), 0rem 2px 4px -0.9px hsl(0 0% 0% / 0.10);
+  --shadow-lg: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.10), 0rem 4px 6px -0.9px hsl(0 0% 0% / 0.10);
+  --shadow-xl: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.10), 0rem 8px 10px -0.9px hsl(0 0% 0% / 0.10);
+  --shadow-2xl: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.25);
+  --tracking-normal: 0em;
+  --spacing: 0.25rem;
+}
+
+.dark {
+  --background: oklch(0.2100 0.0290 249);
+  --foreground: oklch(1.0000 0 0);
+  --card: oklch(0.1832 0.0338 228.0305);
+  --card-foreground: oklch(1.0000 0 0);
+  --popover: oklch(0.2200 0.0120 240);
+  --popover-foreground: oklch(1.0000 0 0);
+  --primary: 9 176 182;
+  --primary-foreground: 255 255 255;
+  --secondary: 5 100 122;
+  --secondary-foreground: 255 255 255;
+  --muted: oklch(0.2800 0.0100 240);
+  --muted-foreground: oklch(0.6500 0.0080 210);
+  --accent: oklch(0.3000 0.0150 240);
+  --accent-foreground: oklch(1.0000 0 0);
+  --destructive: 254 53 51;
+  --destructive-foreground: 255 255 255;
+  --border: oklch(0.3200 0.0200 240);
+  --input: oklch(0.3200 0.0200 240);
+  --ring: 9 176 182;
+  
+  /* Input Variables - Standardized (Dark Mode) */
+  --input-border-color: hsl(var(--input));
+  --input-focus-border-color: hsl(var(--ring));
+  --input-focus-ring-color: hsl(var(--ring) / 0.5);
+  --chart-1: 9 176 182;
+  --chart-2: 5 100 122;
+  --chart-3: oklch(0.6032 0.0046 91.4759);
+  --chart-4: oklch(0.7316 0 0);
+  --chart-5: oklch(0.4568 0 0);
+  --sidebar: 16 52 84;
+  --sidebar-foreground: 255 255 255;
+  --sidebar-primary: 9 176 182;
+  --sidebar-primary-foreground: 255 255 255;
+  --sidebar-accent: 5 100 122;
+  --sidebar-accent-foreground: 255 255 255;
+  --sidebar-border: 38 107 172;
+  --sidebar-ring: 9 176 182;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: serif;
+  --font-mono: 'Courier New', monospace;
+  --radius: 0.5rem;
+  --shadow-x: 0rem;
+  --shadow-y: 0.1rem;
+  --shadow-blur: 0.5rem;
+  --shadow-spread: 0.1rem;
+  --shadow-opacity: 0.2;
+  --shadow-color: #000000;
+  --shadow-2xs: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.10);
+  --shadow-xs: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.10);
+  --shadow-sm: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.20), 0rem 1px 2px -0.9px hsl(0 0% 0% / 0.20);
+  --shadow: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.20), 0rem 1px 2px -0.9px hsl(0 0% 0% / 0.20);
+  --shadow-md: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.20), 0rem 2px 4px -0.9px hsl(0 0% 0% / 0.20);
+  --shadow-lg: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.20), 0rem 4px 6px -0.9px hsl(0 0% 0% / 0.20);
+  --shadow-xl: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.20), 0rem 8px 10px -0.9px hsl(0 0% 0% / 0.20);
+  --shadow-2xl: 0rem 0.1rem 0.5rem 0.1rem hsl(0 0% 0% / 0.50);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: rgb(var(--sidebar));
+  --color-sidebar-foreground: rgb(var(--sidebar-foreground));
+  --color-sidebar-primary: rgb(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: rgb(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: rgb(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: rgb(var(--sidebar-accent-foreground));
+  --color-sidebar-border: rgb(var(--sidebar-border));
+  --color-sidebar-ring: rgb(var(--sidebar-ring));
+
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+  --font-serif: var(--font-serif);
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-2xs: var(--shadow-2xs);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow: var(--shadow);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
+  --shadow-2xl: var(--shadow-2xl);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  
+  :root input:focus,
+  :root textarea:focus,
+  :root select:focus {
+    border-color: rgba(9, 176, 182, 0.5);
+    box-shadow: 
+      0 0 0 3px rgba(9, 176, 182, 0.1),
+      0 1px 2px rgba(5, 100, 122, 0.05);
+  }
+  
+
+
+
+}
+
+
+
+
+/* Phone input styles using direct CSS instead of @apply */
+.react-tel-input {
+  width: 100%;
+}
+
+/* Main input field */
+.react-tel-input .form-control {
+  width: 100%;
+  border-radius: calc(var(--radius) - 2px);
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--background));
+  padding-inline-start: 72px !important;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: hsl(var(--foreground));
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  direction: ltr !important;
+  text-align: left !important;
+  transition: all 0.15s ease-in-out;
+}
+.flag {
+  right: 27px;
+}
+
+.react-tel-input {
+  direction: ltr;
+}
+.react-tel-input .selected-flag {
+  width: 60px !important;
+}
+.react-tel-input .form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+  border-color: hsl(var(--ring));
+}
+
+.react-tel-input .form-control:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Flag dropdown */
+.react-tel-input .flag-dropdown {
+  border: 1px solid hsl(var(--border));
+  direction: ltr !important;
+  border-right: none;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+  border-radius: calc(var(--radius) - 2px) 0 0 calc(var(--radius) - 2px);
+  box-shadow: none;
+}
+
+.react-tel-input .flag-dropdown.open {
+  border-color: hsl(var(--ring));
+}
+
+.react-tel-input .selected-flag {
+  border-radius: calc(var(--radius) - 2px) 0 0 calc(var(--radius) - 2px);
+  padding: 0 0.5rem;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.react-tel-input .selected-flag:hover {
+  background-color: hsl(var(--muted));
+}
+
+.react-tel-input .selected-flag:focus {
+  box-shadow: 0 0 0 2px hsl(var(--ring));
+}
+
+/* Country dropdown list */
+.react-tel-input .country-list {
+  background-color: hsl(var(--popover));
+  color: hsl(var(--popover-foreground));
+  border-radius: calc(var(--radius) - 2px);
+  box-shadow:
+    0 10px 15px -3px rgb(0 0 0 / 0.1),
+    0 4px 6px -4px rgb(0 0 0 / 0.1);
+  border: 1px solid hsl(var(--border));
+  z-index: 50;
+}
+
+.react-tel-input .country-list .country {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  cursor: pointer;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.react-tel-input .country-list .country:hover {
+  background-color: hsl(var(--muted));
+  color: hsl(var(--muted-foreground));
+}
+
+.react-tel-input .country-list .country.highlight {
+  background-color: hsl(var(--accent));
+  color: hsl(var(--accent-foreground));
+}
+
+/* Dark mode adjustments */
+.dark .react-tel-input .form-control {
+  border-color: hsl(var(--border));
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+.dark .react-tel-input .flag-dropdown {
+  border-color: hsl(var(--border));
+  background-color: hsl(var(--background));
+}
+
+.dark .react-tel-input .country-list {
+  background-color: hsl(var(--popover));
+  border-color: hsl(var(--border));
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+}
+
+/* Gradient for active sidebar menu items */
+[data-active="true"][data-sidebar="menu-button"] {
+  background: linear-gradient(to bottom, #09B0B6, #05647A) !important;
+  color: white !important;
+  box-shadow: 0 2px 8px rgba(9, 176, 182, 0.3);
+  transform: translateX(2px);
+}
+
+[data-active="true"][data-sidebar="menu-button"] svg {
+  color: white !important;
+}
+
+/* Hover state for non-active sidebar menu items */
+[data-sidebar="menu-button"]:not([data-active="true"]):hover {
+  background: linear-gradient(to bottom, rgba(9, 176, 182, 0.12), rgba(5, 100, 122, 0.12)) !important;
+  color: #05647A !important;
+  transform: translateX(2px);
+  box-shadow: 0 1px 4px rgba(9, 176, 182, 0.15);
+}
+
+[data-sidebar="menu-button"]:not([data-active="true"]):hover svg {
+  color: #05647A !important;
+}
+
+/* Sidebar menu items default state */
+[data-sidebar="menu-button"]:not([data-active="true"]) {
+  color: rgb(71 85 105);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.dark [data-sidebar="menu-button"]:not([data-active="true"]) {
+  color: rgb(203 213 225);
+}
+
+/* Sidebar group labels */
+[data-sidebar="group-label"] {
+  color: oklch(0.5200 0.0250 215);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.dark [data-sidebar="group-label"] {
+  color: oklch(0.7000 0.0100 210);
+}
+
+/* Sidebar content spacing */
+[data-sidebar="content"] {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(9, 176, 182, 0.3) transparent;
+}
+
+[data-sidebar="content"]::-webkit-scrollbar {
+  width: 6px;
+}
+
+[data-sidebar="content"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-sidebar="content"]::-webkit-scrollbar-thumb {
+  background: rgba(9, 176, 182, 0.3);
+  border-radius: 3px;
+}
+
+[data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
+  background: rgba(9, 176, 182, 0.5);
+}
+
+/* Mode Toggle Animations */
+@keyframes twinkle {
+  0%, 100% { 
+    opacity: 0.3; 
+    transform: scale(1); 
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.5); 
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: translateY(-20px) scale(1); 
+  }
+  50% { 
+    opacity: 0.2; 
+    transform: translateY(-24px) scale(0.5); 
+  }
+}
+
+/* Leaflet Map Styles */
+.leaflet-container {
+  background-color: var(--background);
+}
+
+.dark .leaflet-container {
+  background-color: oklch(0.15 0.01 238.51);
+}
+
+.dark .leaflet-popup-content-wrapper {
+  background-color: var(--card);
+  color: var(--card-foreground);
+}
+
+.dark .leaflet-popup-tip {
+  background-color: var(--card);
+}
+
+.dark .leaflet-control {
+  background-color: var(--card);
+}
+
+.dark .leaflet-bar {
+  background-color: var(--card);
+  border-color: var(--border);
+}
+
+.dark .leaflet-bar a {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-color: var(--border);
+}
+
+.dark .leaflet-bar a:hover {
+  background-color: var(--accent);
+}
+
+.sidebar-icon{ 
+  width: 20px;
+  height: 20px;
+  padding: 0px;
+  margin-block-end: 2px;
+}
+
+/* Input Focus States - Using CSS Variables */
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[data-slot="select-trigger"]:focus-visible,
+[data-slot="textarea"]:focus-visible,
+.phone-input-wrapper:focus-within {
+  border-color: var(--input-focus-border-color) !important;
+  box-shadow: 0 0 0 var(--input-focus-ring-width) var(--input-focus-ring-color) !important;
+  outline: none;
+}
+
+/* Phone Input Focus */
+.phone-input-wrapper:focus-within {
+  border-color: var(--input-focus-border-color) !important;
+  box-shadow: 0 0 0 var(--input-focus-ring-width) var(--input-focus-ring-color) !important;
+}
+
+/* Time Input Focus */
+[data-react-aria-components-time-field]:focus-within {
+  border-color: var(--input-focus-border-color) !important;
+  box-shadow: 0 0 0 var(--input-focus-ring-width) var(--input-focus-ring-color) !important;
+}
