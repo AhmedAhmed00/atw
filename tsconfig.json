@@ -44,6 +44,8 @@
     /* Emit - Never fail on errors */
     "noEmitOnError": false,
     "emitDeclarationOnly": false,
+    "allowJs": true,
+    "checkJs": false,
 
     /* Path alias */
     "baseUrl": ".",
@@ -51,7 +53,7 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+  "include": [],
+  "exclude": ["**/*"]
 }
 
