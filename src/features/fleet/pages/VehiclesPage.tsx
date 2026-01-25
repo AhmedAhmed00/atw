@@ -4,9 +4,9 @@
  */
 
 import { useState, useMemo } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { PageHeader } from '@/components/shared/page-header'
-import { Car, Plus, Upload, Download, Printer, MoreVertical, Eye, Edit, Trash2, AlertCircle } from 'lucide-react'
+import { Car, Plus, Upload, Download, Printer, MoreVertical, Eye, Edit, Trash2, AlertCircle, Wrench } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -27,6 +27,7 @@ import { VehicleLocationChart } from '../components/VehicleLocationChart'
 import { StatusDistributionChart } from '../components/StatusDistributionChart'
 import { VehicleViewToggle, VehicleViewMode } from '../components/VehicleViewToggle'
 import { LiveFleetTracking } from '../components/LiveFleetTracking'
+import { SendToMaintenanceDialog } from '../components/SendToMaintenanceDialog'
 import {
   vehicles,
   vehicleStats,
@@ -41,6 +42,7 @@ export function VehiclesPage() {
   const navigate = useNavigate()
   const [statusFilter, setStatusFilter] = useState<'all' | 'Active' | 'Maintenance'>('all')
   const [viewMode, setViewMode] = useState<VehicleViewMode>('table')
+  const [sendToMaintenanceOpen, setSendToMaintenanceOpen] = useState(false)
 
   // Filter vehicles by status
   const filteredVehicles = useMemo(() => {
@@ -70,8 +72,7 @@ export function VehiclesPage() {
   }
 
   const handleView = (vehicleId: string) => {
-    // TODO: Navigate to vehicle detail page
-    console.log('View vehicle:', vehicleId)
+    navigate(`/fleet/vehicles/${vehicleId}`)
   }
 
   const handleEdit = (vehicleId: string) => {
@@ -84,13 +85,34 @@ export function VehiclesPage() {
     console.log('Delete vehicle:', vehicleId)
   }
 
+  const handleSendToMaintenance = (data: { mode: 'automatic' | 'manual'; vehicleIds?: string[] }) => {
+    if (data.mode === 'automatic') {
+      // Send all available vehicles to maintenance
+      const availableVehicles = vehicles.filter((v) => v.status !== 'Maintenance')
+      console.log('Sending all vehicles to maintenance:', availableVehicles.map((v) => v.id))
+      // TODO: Implement API call to send vehicles to maintenance
+    } else {
+      // Send selected vehicles to maintenance
+      console.log('Sending selected vehicles to maintenance:', data.vehicleIds)
+      // TODO: Implement API call to send selected vehicles to maintenance
+    }
+  }
+
   const vehicleColumns: ColumnDef<Vehicle>[] = [
     {
       accessorKey: 'vehicleId',
       header: 'Vehicle ID',
-      cell: ({ row }) => (
-        <div className="font-medium text-[#05647A]">{row.getValue('vehicleId')}</div>
-      ),
+      cell: ({ row }) => {
+        const vehicleId = row.original.id
+        return (
+          <Link
+            to={`/fleet/vehicles/${vehicleId}`}
+            className="font-medium text-[#05647A] hover:text-[#09B0B6] hover:underline transition-colors"
+          >
+            {row.getValue('vehicleId')}
+          </Link>
+        )
+      },
     },
     {
       accessorKey: 'status',
@@ -164,14 +186,22 @@ export function VehiclesPage() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => handleView(vehicle.id)}>
-                <Eye className="mr-2 h-4 w-4" />
-                View
+              <DropdownMenuItem asChild>
+                <Link to={`/fleet/vehicles/${vehicle.id}`} className="flex items-center">
+                  <Eye className="mr-2 h-4 w-4" />
+                  View
+                </Link>
               </DropdownMenuItem>
               <DropdownMenuItem onClick={() => handleEdit(vehicle.id)}>
                 <Edit className="mr-2 h-4 w-4" />
                 Edit
               </DropdownMenuItem>
+              {vehicle.status !== 'Maintenance' && (
+                <DropdownMenuItem onClick={() => setSendToMaintenanceOpen(true)}>
+                  <Wrench className="mr-2 h-4 w-4" />
+                  Send to Maintenance
+                </DropdownMenuItem>
+              )}
               <DropdownMenuItem
                 onClick={() => handleDelete(vehicle.id)}
                 className="text-red-600"
@@ -274,6 +304,14 @@ export function VehiclesPage() {
       ) : (
         <LiveFleetTracking vehicles={filteredVehicles} />
       )}
+
+      {/* Send to Maintenance Dialog */}
+      <SendToMaintenanceDialog
+        open={sendToMaintenanceOpen}
+        onOpenChange={setSendToMaintenanceOpen}
+        vehicles={vehicles}
+        onConfirm={handleSendToMaintenance}
+      />
     </div>
   )
 }

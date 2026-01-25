@@ -1,0 +1,13 @@
+craete page for shift details 
+shift id 
+location 
+supervisor 
+team 
+buttons for notify export edit cancel 
+
+trip logistics to display the trips that in this shift 
+
+assigned team table 
+
+operational feed contains comments 
+and input to add comment 

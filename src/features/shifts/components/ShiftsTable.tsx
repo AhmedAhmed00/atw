@@ -19,8 +19,24 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { DataTable } from '@/components/shared/table'
 import { cn } from '@/lib/utils'
+import { Link } from 'react-router-dom'
 
 export const shiftsColumns: ColumnDef<Shift>[] = [
+  {
+    accessorKey: 'id',
+    header: 'Shift ID',
+    cell: ({ row }) => {
+      const shiftId = row.original.id
+      return (
+        <Link
+          to={`/shifts/${shiftId}`}
+          className="font-medium text-[#05647A] hover:text-[#09B0B6] hover:underline transition-colors"
+        >
+          {shiftId.toUpperCase()}
+        </Link>
+      )
+    },
+  },
   {
     accessorKey: 'shiftType',
     header: ({ column }) => <SortableHeader column={column}>Shift Type</SortableHeader>,
@@ -166,9 +182,11 @@ export const shiftsColumns: ColumnDef<Shift>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem>
-              <Eye className="mr-2 h-4 w-4" />
-              View
+            <DropdownMenuItem asChild>
+              <Link to={`/shifts/${shift.id}`} className="flex items-center">
+                <Eye className="mr-2 h-4 w-4" />
+                View
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Pencil className="mr-2 h-4 w-4" />

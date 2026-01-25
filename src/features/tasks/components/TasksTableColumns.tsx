@@ -19,6 +19,7 @@ import {
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
 import { PRIORITY_ORDER } from '@/lib/sort-utils'
+import { Link } from 'react-router-dom'
 
 const statusConfig: Record<TaskStatus, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline'; className?: string }> = {
   pending: {
@@ -76,19 +77,37 @@ const categoryConfig: Record<TaskCategory, { label: string }> = {
 
 export const tasksColumns: ColumnDef<Task>[] = [
   {
+    accessorKey: 'id',
+    header: 'Task ID',
+    cell: ({ row }) => {
+      const taskId = row.original.id
+      return (
+        <Link
+          to={`/tasks/${taskId}`}
+          className="font-medium text-[#05647A] hover:text-[#09B0B6] hover:underline transition-colors text-sm"
+        >
+          {taskId.toUpperCase()}
+        </Link>
+      )
+    },
+  },
+  {
     accessorKey: 'title',
     header: ({ column }) => <SortableHeader column={column}>Task</SortableHeader>,
     cell: ({ row }) => {
       const task = row.original
       return (
-        <div className="flex flex-col">
+        <Link
+          to={`/tasks/${task.id}`}
+          className="flex flex-col hover:text-[#09B0B6] transition-colors"
+        >
           <span className="font-medium text-sm">{task.title}</span>
           {task.description && (
             <span className="text-xs text-muted-foreground mt-0.5 line-clamp-1">
               {task.description}
             </span>
           )}
-        </div>
+        </Link>
       )
     },
   },
@@ -192,9 +211,11 @@ export const tasksColumns: ColumnDef<Task>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem onClick={() => console.log('View task:', task.id)}>
-              <Eye className="mr-2 h-4 w-4" />
-              View Details
+            <DropdownMenuItem asChild>
+              <Link to={`/tasks/${task.id}`} className="flex items-center">
+                <Eye className="mr-2 h-4 w-4" />
+                View Details
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem onClick={() => console.log('Edit task:', task.id)}>

@@ -18,7 +18,7 @@ interface AuthState {
 const STATIC_USERS = [
   {
     id: '1',
-    email: 'admin@All The way.com',
+    email: 'admin@alltheway.com',
     password: 'admin123',
     name: 'Dr. Admin',
     role: 'admin' as const,

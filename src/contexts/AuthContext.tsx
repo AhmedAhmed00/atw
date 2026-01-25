@@ -21,14 +21,14 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 const STATIC_USERS = [
   {
     id: '1',
-    email: 'admin@All The way.com',
+    email: 'admin@alltheway.com',
     password: 'admin123',
     name: 'Dr. Admin',
     role: 'admin' as const,
   },
   {
     id: '2',
-    email: 'doctor@All The way.com',
+    email: 'doctor@alltheway.com',
     password: 'doctor123',
     name: 'Dr. Smith',
     role: 'doctor' as const,

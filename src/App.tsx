@@ -5,6 +5,7 @@ import { ScrollRestoration } from './components/ScrollRestoration'
 import { ProtectedRoute } from './components/ProtectedRoute'
 import { useAppSelector } from './store/hooks'
 import { Loader2 } from 'lucide-react'
+import TripDetailPage from './features/operations/pages/TripDetailPage'
 
 // Loading component
 function PageLoader() {
@@ -34,9 +35,11 @@ const EmployeesPage = lazy(() => import('./features/employees'))
 const ShiftsPage = lazy(() => import('./features/shifts'))
 const SwapRequestFormPage = lazy(() => import('./features/shifts/pages/SwapRequestFormPage').then(m => ({ default: m.SwapRequestFormPage })))
 const CreateShiftPage = lazy(() => import('./features/shifts/pages/CreateShiftPage').then(m => ({ default: m.CreateShiftPage })))
+const ShiftDetailPage = lazy(() => import('./features/shifts/pages/ShiftDetailPage').then(m => ({ default: m.ShiftDetailPage })))
 const AttendancePage = lazy(() => import('./features/attendance'))
 const ManualAttendanceAdjustmentPage = lazy(() => import('./features/attendance/pages/ManualAttendanceAdjustmentPage').then(m => ({ default: m.ManualAttendanceAdjustmentPage })))
 const TasksPage = lazy(() => import('./features/tasks'))
+const TaskDetailPage = lazy(() => import('./features/tasks/pages/TaskDetailPage').then(m => ({ default: m.TaskDetailPage })))
 const InstitutionsPage = lazy(() => import('./features/clients/pages/InstitutionsPage'))
 const AddInstitutionPage = lazy(() => import('./features/clients/pages/AddInstitutionPage'))
 const PatientsPage = lazy(() => import('./features/clients/pages/PatientsPage'))
@@ -47,6 +50,7 @@ const CreateInvoicePage = lazy(() => import('./features/clients/pages/CreateInvo
 const AddTripPage = lazy(() => import('./features/clients/pages/AddTripPage'))
 const VehiclesPage = lazy(() => import('./features/fleet/pages/VehiclesPage'))
 const AddVehiclePage = lazy(() => import('./features/fleet/pages/AddVehiclePage'))
+const VehicleDetailPage = lazy(() => import('./features/fleet/pages/VehicleDetailPage').then(m => ({ default: m.VehicleDetailPage })))
 const TripsPage = lazy(() => import('./features/operations/pages/TripsPage'))
 const InvoicesPage = lazy(() => import('./features/finance/pages/InvoicesPage'))
 const CreateFinanceInvoicePage = lazy(() => import('./features/finance/pages/CreateInvoicePage'))
@@ -111,11 +115,13 @@ function AppRoutes() {
                       <Route path="/employees/:employeeId/certifications/:certificationId" element={<ViewCertificationPage />} />
                       <Route path="/shifts" element={<ShiftsPage />} />
                       <Route path="/shifts/new" element={<CreateShiftPage />} />
+                      <Route path="/shifts/:id" element={<ShiftDetailPage />} />
                       <Route path="/shifts/swap-request/new" element={<SwapRequestFormPage />} />
                       <Route path="/attendance" element={<AttendancePage />} />
                       <Route path="/attendance/adjustment" element={<ManualAttendanceAdjustmentPage />} />
                       <Route path="/tasks" element={<TasksPage />} />
                       <Route path="/tasks/new" element={<AddTaskPage />} />
+                      <Route path="/tasks/:id" element={<TaskDetailPage />} />
                       <Route path="/clients/institutions" element={<InstitutionsPage />} />
                       <Route path="/clients/institutions/new" element={<AddInstitutionPage />} />
                       <Route path="/clients/institutions/:id" element={<InstitutionDetailPage />} />
@@ -125,7 +131,9 @@ function AppRoutes() {
                       <Route path="/clients/patients" element={<PatientsPage />} />
                       <Route path="/fleet/vehicles" element={<VehiclesPage />} />
                       <Route path="/fleet/vehicles/new" element={<AddVehiclePage />} />
+                      <Route path="/fleet/vehicles/:id" element={<VehicleDetailPage />} />
                       <Route path="/operations/trips" element={<TripsPage />} />
+                      <Route path="/operations/trips/:id" element={<TripDetailPage />} />
                       <Route path="/operations/trips/new" element={<AddTripPage />} />
                       <Route path="/finance/invoices" element={<InvoicesPage />} />
                       <Route path="/finance/invoices/new" element={<CreateFinanceInvoicePage />} />

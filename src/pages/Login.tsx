@@ -97,7 +97,6 @@ export default function Login() {
                 Email Address
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10 pointer-events-none" />
                 <Input
                   id="email"
                   type="email"
@@ -124,7 +123,6 @@ export default function Login() {
                 </Link>
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10 pointer-events-none" />
                 <Input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
