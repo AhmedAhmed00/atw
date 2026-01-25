@@ -82,7 +82,7 @@ export const medicalDetailsSchema = z.object({
 })
 
 // Step 3: Insurance Information
-export const insuranceSchema = z.object({
+const insuranceBaseSchema = z.object({
   payerName: z
     .string()
     .min(2, 'Payer name must be at least 2 characters')
@@ -101,7 +101,9 @@ export const insuranceSchema = z.object({
   authorizationNumber: z.string().optional(),
   authorizationStartDate: z.string().optional(),
   authorizationEndDate: z.string().optional(),
-}).refine(
+})
+
+export const insuranceSchema = insuranceBaseSchema.refine(
   (data) => {
     if (data.priorAuthorization === 'Yes') {
       return (

@@ -4,8 +4,7 @@
   "devCommand": "npm run dev",
   "installCommand": "npm install",
   "framework": "vite",
-  "skipLibCheck": true
-,
+
   "rewrites": [
     {
       "source": "/(.*)",
