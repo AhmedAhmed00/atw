@@ -100,14 +100,16 @@ export const tripLocationsSchema = z.object({
 })
 
 // Step 5: Vehicle & Crew Assignment
-export const vehicleCrewSchema = z.object({
+const vehicleCrewBaseSchema = z.object({
   assignmentType: z.enum(['Automatic Assignment', 'Manual Assignment'], {
     required_error: 'Assignment type is required',
   }),
   vehicleId: z.string().optional(),
   driverId: z.string().optional(),
   primaryMedicalCrewId: z.string().optional(),
-}).refine(
+})
+
+export const vehicleCrewSchema = vehicleCrewBaseSchema.refine(
   (data) => {
     if (data.assignmentType === 'Manual Assignment') {
       return data.vehicleId && data.driverId
@@ -137,12 +139,34 @@ export const pricingCostSchema = z.object({
 // Combined schema for the entire form
 export const addTripFormSchema = z.object({
   ...tripCreationMethodSchema.shape,
-  ...tripModeTimingSchema.shape,
+  ...tripModeTimingBaseSchema.shape,
   ...patientServiceSchema.shape,
   ...tripLocationsSchema.shape,
-  ...vehicleCrewSchema.shape,
+  ...vehicleCrewBaseSchema.shape,
   ...pricingCostSchema.shape,
-})
+}).refine(
+  (data) => {
+    if (data.tripMode === 'Round Trip') {
+      return data.returnPickupDate && data.returnPickupTime
+    }
+    return true
+  },
+  {
+    message: 'Return pickup date and time are required for round trips',
+    path: ['returnPickupDate'],
+  }
+).refine(
+  (data) => {
+    if (data.assignmentType === 'Manual Assignment') {
+      return data.vehicleId && data.driverId
+    }
+    return true
+  },
+  {
+    message: 'Vehicle and driver are required for manual assignment',
+    path: ['vehicleId'],
+  }
+)
 
 // Type inference
 export type TripCreationMethodFormData = z.infer<typeof tripCreationMethodSchema>

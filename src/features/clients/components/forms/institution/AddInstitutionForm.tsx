@@ -93,10 +93,11 @@ export function AddInstitutionForm({
       })
 
       if (firstErrorField) {
+        const fieldName = String(firstErrorField)
         const element =
-          document.querySelector(`[name="${firstErrorField}"]`) ||
-          document.querySelector(`#${firstErrorField}`) ||
-          document.querySelector(`[id*="${firstErrorField}"]`)
+          document.querySelector(`[name="${fieldName}"]`) ||
+          document.querySelector(`#${fieldName}`) ||
+          document.querySelector(`[id*="${fieldName}"]`)
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'center' })
           ;(element as HTMLElement).focus()

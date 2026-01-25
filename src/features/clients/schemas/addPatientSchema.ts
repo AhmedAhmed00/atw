@@ -133,7 +133,7 @@ export const insuranceSchema = z.object({
 )
 
 // Step 4: Accessibility & Equipment
-export const accessibilitySchema = z.object({
+const accessibilityBaseSchema = z.object({
   accessibilityConstraints: z
     .array(z.enum(['Visual Impairment', 'Hearing Impairment', 'Mobility Impairment', 'Cognitive Impairment', 'Other']))
     .default([]),
@@ -149,7 +149,9 @@ export const accessibilitySchema = z.object({
   }),
   communicationImpairments: z.string().max(500, 'Communication Impairments must not exceed 500 characters').optional(),
   behavioralConsiderations: z.string().max(500, 'Behavioral Considerations must not exceed 500 characters').optional(),
-}).refine(
+})
+
+export const accessibilitySchema = accessibilityBaseSchema.refine(
   (data) => {
     if (data.interpreterRequired === 'Yes') {
       return data.preferredLanguage && data.preferredLanguage.length > 0
@@ -219,14 +221,54 @@ export const addPatientFormSchema = z.object({
   // Step 2
   ...medicalDetailsSchema.shape,
   // Step 3
-  ...insuranceSchema.shape,
+  ...insuranceBaseSchema.shape,
   // Step 4
-  ...accessibilitySchema.shape,
+  ...accessibilityBaseSchema.shape,
   // Step 5
   ...contactAddressSchema.shape,
   // Step 6
   ...summarySchema.shape,
-})
+}).refine(
+  (data) => {
+    if (data.priorAuthorization === 'Yes') {
+      return (
+        data.authorizationNumber &&
+        data.authorizationNumber.length > 0 &&
+        data.authorizationStartDate &&
+        data.authorizationEndDate
+      )
+    }
+    return true
+  },
+  {
+    message: 'Authorization number and dates are required when Prior Authorization is Yes',
+    path: ['authorizationNumber'],
+  }
+).refine(
+  (data) => {
+    if (data.priorAuthorization === 'Yes' && data.authorizationStartDate && data.authorizationEndDate) {
+      const startDate = new Date(data.authorizationStartDate)
+      const endDate = new Date(data.authorizationEndDate)
+      return endDate >= startDate
+    }
+    return true
+  },
+  {
+    message: 'Authorization end date must be after start date',
+    path: ['authorizationEndDate'],
+  }
+).refine(
+  (data) => {
+    if (data.interpreterRequired === 'Yes') {
+      return data.preferredLanguage && data.preferredLanguage.length > 0
+    }
+    return true
+  },
+  {
+    message: 'Preferred Language is required when Interpreter Required is Yes',
+    path: ['preferredLanguage'],
+  }
+)
 
 // Type inference
 export type PersonalInfoFormData = z.infer<typeof personalInfoSchema>

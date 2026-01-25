@@ -173,7 +173,7 @@ export function Step2ContractDetails() {
           </div>
 
           <div className="grid gap-4">
-            {selectedServices.map((service) => {
+            {selectedServices.map((service: string) => {
               const serviceLabel = SERVICE_OPTIONS.find((s) => s.value === service)?.label || service
               const config = serviceConfigurations[service]
               const isConfirmed = config?.rateCardConfirmed === true

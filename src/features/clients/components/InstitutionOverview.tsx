@@ -12,7 +12,6 @@ import {
   MapPin, 
   Globe,
   FileText,
-  Receipt,
   ClipboardList,
   Users,
   DollarSign,
@@ -22,7 +21,6 @@ import {
   Briefcase
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
-import { Separator } from '@/components/ui/separator'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
 import { InfoItem } from '@/components/shared/InfoItem'
 import { SectionCard } from '@/components/shared/SectionCard'
@@ -458,18 +456,15 @@ export function InstitutionOverview({ institution }: InstitutionOverviewProps) {
         <div className="space-y-3">
           <ComplianceItem
             label="Contract on File"
-            isVerified={details.compliance.contractOnFile}
-            icon={FileCheck}
+            verified={details.compliance.contractOnFile}
           />
           <ComplianceItem
             label="Tax Certificate on File"
-            isVerified={details.compliance.taxCertificateOnFile}
-            icon={FileCheck}
+            verified={details.compliance.taxCertificateOnFile}
           />
           <ComplianceItem
             label="License Verified"
-            isVerified={details.compliance.licenseVerified}
-            icon={Shield}
+            verified={details.compliance.licenseVerified}
           />
         </div>
       </SectionCard>

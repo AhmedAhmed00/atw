@@ -111,7 +111,7 @@ export function Step6Summary() {
                 <span className="text-xs font-medium text-muted-foreground uppercase">Clinical Flags</span>
               </div>
               <div className="flex flex-wrap gap-2">
-                {formValues.clinicalFlags.map((flag) => (
+                {formValues.clinicalFlags.map((flag: string) => (
                   <Badge key={flag} variant="outline" className="border-[#09B0B6] text-[#05647A]">
                     {flag}
                   </Badge>
@@ -188,7 +188,7 @@ export function Step6Summary() {
                   Accessibility Constraints
                 </span>
                 <div className="flex flex-wrap gap-2">
-                  {formValues.accessibilityConstraints.map((constraint) => (
+                  {formValues.accessibilityConstraints.map((constraint: string) => (
                     <Badge key={constraint} variant="outline">
                       {constraint}
                     </Badge>
@@ -202,7 +202,7 @@ export function Step6Summary() {
                   Equipment Needed
                 </span>
                 <div className="flex flex-wrap gap-2">
-                  {formValues.equipmentNeeded.map((equipment) => (
+                  {formValues.equipmentNeeded.map((equipment: string) => (
                     <Badge key={equipment} variant="outline" className="border-[#09B0B6] text-[#05647A]">
                       {equipment}
                     </Badge>

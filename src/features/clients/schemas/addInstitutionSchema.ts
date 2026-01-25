@@ -108,7 +108,7 @@ export const basicInfoSchema = z.object({
 })
 
 // Step 2: Contract Details
-export const contractDetailsSchema = z.object({
+const contractDetailsBaseSchema = z.object({
   services: z
     .array(z.enum(['Ambulatory', 'Wheelchair', 'Stretcher', 'BLS', 'ALS', 'ICU']))
     .min(1, 'At least one service must be selected'),
@@ -117,7 +117,9 @@ export const contractDetailsSchema = z.object({
       rateCardConfirmed: z.boolean(),
     })
   ),
-}).refine(
+})
+
+export const contractDetailsSchema = contractDetailsBaseSchema.refine(
   (data) => {
     // Ensure all selected services have configurations with confirmed rate cards
     return data.services.every((service) => {
@@ -133,8 +135,19 @@ export const contractDetailsSchema = z.object({
 // Combined schema for the entire form
 export const addInstitutionFormSchema = z.object({
   ...basicInfoSchema.shape,
-  ...contractDetailsSchema.shape,
-})
+  ...contractDetailsBaseSchema.shape,
+}).refine(
+  (data) => {
+    // Ensure all selected services have configurations with confirmed rate cards
+    return data.services.every((service) => {
+      return data.serviceConfigurations[service]?.rateCardConfirmed === true
+    })
+  },
+  {
+    message: 'All selected services must have confirmed rate cards',
+    path: ['serviceConfigurations'],
+  }
+)
 
 // Type inference
 export type BasicInfoFormData = z.infer<typeof basicInfoSchema>

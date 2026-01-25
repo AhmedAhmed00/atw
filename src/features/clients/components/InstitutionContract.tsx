@@ -56,7 +56,7 @@ interface InstitutionContractProps {
   institutionId: string
 }
 
-export function InstitutionContract({ institutionId }: InstitutionContractProps) {
+export function InstitutionContract({ }: InstitutionContractProps) {
   const [selectedService, setSelectedService] = useState<string>('ambulatory')
   const [isSaving, setIsSaving] = useState(false)
 

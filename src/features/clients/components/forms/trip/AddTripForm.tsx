@@ -12,7 +12,6 @@ import { ArrowLeft, ArrowRight, Save, CheckCircle2, List, Plus } from 'lucide-re
 import {
   addTripFormSchema,
   defaultTripFormValues,
-  tripStepSchemas,
   AddTripFormData,
 } from '../../../schemas/addTripSchema'
 import { StepIndicator } from '../StepIndicator'
@@ -143,7 +142,7 @@ export function AddTripForm({
       } else {
         // Exclude return trip fields for one-way trips
         const oneWayFields = fieldsToValidate.filter(
-          (field) => String(field).startsWith('return')
+          (field) => !String(field).startsWith('return')
         )
         const result = await form.trigger(oneWayFields as any)
         if (!result) {
@@ -177,10 +176,11 @@ export function AddTripForm({
       })
 
       if (firstErrorField) {
+        const fieldName = String(firstErrorField)
         const element =
-          document.querySelector(`[name="${firstErrorField}"]`) ||
-          document.querySelector(`#${firstErrorField}`) ||
-          document.querySelector(`[id*="${firstErrorField}"]`)
+          document.querySelector(`[name="${fieldName}"]`) ||
+          document.querySelector(`#${fieldName}`) ||
+          document.querySelector(`[id*="${fieldName}"]`)
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'center' })
           ;(element as HTMLElement).focus()
