@@ -7,7 +7,7 @@ import {
   getFilteredRowModel,
   ColumnFiltersState,
 } from '@tanstack/react-table'
-import { useState, ReactNode } from 'react'
+import { useState } from 'react'
 import { TableSearch } from './TableSearch'
 import { TableHeader } from './TableHeader'
 import { TableBody } from './TableBody'

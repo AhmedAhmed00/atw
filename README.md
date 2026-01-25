@@ -1,79 +1,104 @@
-# React + Vite Modern Setup
+# All The Way - Healthcare Management System
 
-A modern React application built with the latest tools and best practices.
+Professional healthcare management system built with React, TypeScript, and Vite.
 
-## Tech Stack
+## 🚀 Getting Started
 
-- **React 19** - Latest version of React
-- **TypeScript** - Type-safe development
-- **Vite** - Lightning-fast build tool
-- **React Router v7** - Modern routing solution
-- **Shadcn UI** - Beautiful, accessible components
-- **Tailwind CSS** - Utility-first CSS framework
-- **React Query** (TanStack Query) - Server state management
-- **React Hook Form** - Performant form handling
-- **Zod** - TypeScript-first schema validation
+### Prerequisites
 
-## Getting Started
+- Node.js 18+ 
+- npm or yarn
 
-### Install Dependencies
+### Installation
 
 ```bash
+# Install dependencies
 npm install
-```
 
-### Run Development Server
-
-```bash
+# Start development server
 npm run dev
-```
 
-### Build for Production
-
-```bash
+# Build for production
 npm run build
-```
 
-### Preview Production Build
-
-```bash
+# Preview production build
 npm run preview
 ```
 
-## Project Structure
+## 📦 Deployment
+
+### Vercel Deployment
+
+This project is configured for easy deployment on Vercel:
+
+1. **Connect your repository** to Vercel
+2. **Vercel will automatically detect** the Vite framework
+3. **Build settings** are pre-configured in `vercel.json`:
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+   - Framework: `vite`
+
+4. **Deploy** - Vercel will automatically build and deploy on every push to your main branch
+
+### Manual Deployment
+
+```bash
+# Build the project
+npm run build
+
+# The dist/ folder contains the production-ready files
+# Deploy the contents of dist/ to your hosting provider
+```
+
+## 🛠️ Tech Stack
+
+- **React 19** - UI Framework
+- **TypeScript** - Type Safety
+- **Vite** - Build Tool
+- **React Router** - Routing
+- **Tailwind CSS** - Styling
+- **Redux Toolkit** - State Management
+- **React Hook Form** - Form Management
+- **Zod** - Schema Validation
+- **Recharts** - Data Visualization
+- **Leaflet** - Maps
+
+## 📁 Project Structure
 
 ```
 src/
-├── components/
-│   └── ui/           # Shadcn UI components
-├── lib/
-│   └── utils.ts      # Utility functions
-├── pages/            # Page components
-├── App.tsx           # Main app component
-├── main.tsx          # Entry point
-└── index.css         # Global styles
+├── components/     # Reusable UI components
+├── features/       # Feature-based modules
+├── pages/          # Page components
+├── store/          # Redux store and slices
+├── hooks/          # Custom React hooks
+├── lib/            # Utility functions
+└── types/          # TypeScript type definitions
 ```
 
-## Features
+## 🔧 Configuration
 
-- ⚡️ React 19 with latest features
-- 🎨 Shadcn UI components pre-configured
-- 🔥 Hot Module Replacement (HMR)
-- 📝 TypeScript for type safety
-- 🎯 React Router v7 for routing
-- 🔄 React Query for data fetching
-- 📋 React Hook Form + Zod for forms
-- 🎨 Tailwind CSS for styling
-- ✨ Modern ESLint configuration
+- `vite.config.ts` - Vite configuration
+- `tsconfig.json` - TypeScript configuration
+- `vercel.json` - Vercel deployment configuration
+- `tailwind.config.js` - Tailwind CSS configuration
 
-## Available Scripts
+## 📝 Scripts
 
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build
 - `npm run lint` - Run ESLint
 
-## License
+## 🌐 Environment Variables
 
-MIT
+If needed, create a `.env` file in the root directory:
 
+```env
+VITE_API_URL=your_api_url_here
+VITE_APP_NAME=All The Way
+```
+
+## 📄 License
+
+Private - All Rights Reserved

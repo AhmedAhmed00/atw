@@ -128,10 +128,11 @@ export function AddTripForm({
             return fieldState.error
           })
           if (firstErrorField) {
+            const fieldName = String(firstErrorField)
             const element =
-              document.querySelector(`[name="${firstErrorField}"]`) ||
-              document.querySelector(`#${firstErrorField}`) ||
-              document.querySelector(`[id*="${firstErrorField}"]`)
+              document.querySelector(`[name="${fieldName}"]`) ||
+              document.querySelector(`#${fieldName}`) ||
+              document.querySelector(`[id*="${fieldName}"]`)
             if (element) {
               element.scrollIntoView({ behavior: 'smooth', block: 'center' })
               ;(element as HTMLElement).focus()
@@ -142,7 +143,7 @@ export function AddTripForm({
       } else {
         // Exclude return trip fields for one-way trips
         const oneWayFields = fieldsToValidate.filter(
-          (field) => !field.startsWith('return')
+          (field) => String(field).startsWith('return')
         )
         const result = await form.trigger(oneWayFields as any)
         if (!result) {

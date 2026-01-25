@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { User } from 'lucide-react'
-import { FullRegistrationFormData } from '../../../schemas/fullRegistrationSchema'
+import { FullRegistrationFormData } from '../../../../schemas/fullRegistrationSchema'
 
 const homebaseOptions = [
   { value: 'emergency response', label: 'Emergency Response' },

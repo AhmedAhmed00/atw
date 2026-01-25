@@ -42,4 +42,4 @@ export interface AttendanceStats {
 }
 
 // Re-export Employee type from employees feature
-export { Employee } from '@/features/employees/types'
+export type { Employee } from '@/features/employees/types'

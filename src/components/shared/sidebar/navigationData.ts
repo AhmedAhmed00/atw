@@ -1,12 +1,7 @@
 import {
   Home,
   Users,
-  Briefcase,
-  Clock,
-  CreditCard,
-  UserCircle,
   Cog,
-  HeadsetIcon,
   Calendar,
   ClipboardCheck,
   CheckSquare,

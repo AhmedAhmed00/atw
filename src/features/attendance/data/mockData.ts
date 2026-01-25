@@ -3,7 +3,7 @@
  * Sample attendance records for development and testing
  */
 
-import { Attendance, BreakRecord } from '../types'
+import { Attendance, BreakRecord, AttendanceStats } from '../types'
 
 // Helper function to generate random time
 const randomTime = (startHour: number, endHour: number): string => {

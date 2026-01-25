@@ -9,7 +9,7 @@ import { FormField, FormItem, FormLabel, FormControl, FormMessage } from '@/comp
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
 import { UserCheck } from 'lucide-react'
-import { FullRegistrationFormData } from '../../../schemas/fullRegistrationSchema'
+import { FullRegistrationFormData } from '../../../../schemas/fullRegistrationSchema'
 
 const roleOptions = [
   { value: 'driver', label: 'Driver' },

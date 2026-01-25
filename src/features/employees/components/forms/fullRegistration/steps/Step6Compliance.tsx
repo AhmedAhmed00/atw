@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button'
 import { Label } from '@/components/ui/label'
 import { Checkbox } from '@/components/ui/checkbox'
 import { Upload, X, FileText, ShieldCheck } from 'lucide-react'
-import { FullRegistrationFormData } from '../../../schemas/fullRegistrationSchema'
+import { FullRegistrationFormData } from '../../../../schemas/fullRegistrationSchema'
 
 export function Step6Compliance() {
   const form = useFormContext<FullRegistrationFormData>()

@@ -9,15 +9,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { ArrowLeft, ArrowRight, Save, CheckCircle2, Users, Plus } from 'lucide-react'
-import { cn } from '@/lib/utils'
 import {
   addPatientFormSchema,
   defaultFormValues,
-  stepSchemas,
   AddPatientFormData,
 } from '../../schemas/addPatientSchema'
 import { StepIndicator } from './StepIndicator'
-import { StepErrorSummary } from './StepErrorSummary'
 import { Step1PersonalInfo } from './steps/Step1PersonalInfo'
 import { Step2MedicalDetails } from './steps/Step2MedicalDetails'
 import { Step3Insurance } from './steps/Step3Insurance'
@@ -109,9 +106,10 @@ export function AddPatientForm({ onSubmit, onCancel, onViewAllPatients, defaultV
       
       if (firstErrorField) {
         // Try to find the input element by name or id
-        const element = document.querySelector(`[name="${firstErrorField}"]`) ||
-                       document.querySelector(`#${firstErrorField}`) ||
-                       document.querySelector(`[id*="${firstErrorField}"]`)
+        const fieldName = String(firstErrorField)
+        const element = document.querySelector(`[name="${fieldName}"]`) ||
+                       document.querySelector(`#${fieldName}`) ||
+                       document.querySelector(`[id*="${fieldName}"]`)
         if (element) {
           element.scrollIntoView({ behavior: 'smooth', block: 'center' })
           ;(element as HTMLElement).focus()

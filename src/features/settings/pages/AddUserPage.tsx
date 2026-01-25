@@ -131,14 +131,22 @@ export function AddUserPage() {
   const { id } = useParams<{ id?: string }>()
   const isEditing = !!id
 
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<{
+    name: string
+    email: string
+    phone: string
+    password: string
+    status: 'Active' | 'Inactive'
+    role: string
+    permissions: string[]
+  }>({
     name: '',
     email: '',
     phone: '',
     password: '',
-    status: 'Active' as const,
+    status: 'Active',
     role: '',
-    permissions: [] as string[],
+    permissions: [],
   })
 
   const [showPassword, setShowPassword] = useState(false)
@@ -163,7 +171,7 @@ export function AddUserPage() {
           email: existingUser.email,
           phone: existingUser.phone || '',
           password: '', // Don't load password
-          status: existingUser.status,
+          status: existingUser.status as 'Active' | 'Inactive',
           role: existingUser.role,
           permissions: existingUser.permissions,
         })

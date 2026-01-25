@@ -25,7 +25,7 @@ export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
 
       <SidebarContent className="px-3 py-2 ">
-        {navigationSections.map((section, index) => (
+        {navigationSections.map((section) => (
           <div key={section.label}>
             <SidebarNavGroup section={section} />
             

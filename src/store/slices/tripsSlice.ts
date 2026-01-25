@@ -18,7 +18,7 @@ interface TripsState {
 // Async thunk to fetch trips (in real app, this would be an API call)
 export const fetchTrips = createAsyncThunk(
   'trips/fetchTrips',
-  async (patientId?: string, { rejectWithValue }) => {
+  async (patientId: string | undefined, { rejectWithValue }) => {
     try {
       // Simulate API delay
       await new Promise((resolve) => setTimeout(resolve, 500))

@@ -12,7 +12,7 @@ import { Button } from '@/components/ui/button'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Label } from '@/components/ui/label'
 import { Upload, X, FileText, Stethoscope } from 'lucide-react'
-import { FullRegistrationFormData } from '../../../schemas/fullRegistrationSchema'
+import { FullRegistrationFormData } from '../../../../schemas/fullRegistrationSchema'
 
 const states = [
   'Alabama', 'Alaska', 'Arizona', 'Arkansas', 'California', 'Colorado', 'Connecticut', 'Delaware',
