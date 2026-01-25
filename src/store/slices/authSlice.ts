@@ -18,14 +18,14 @@ interface AuthState {
 const STATIC_USERS = [
   {
     id: '1',
-    email: 'admin@healix.com',
+    email: 'admin@All The way.com',
     password: 'admin123',
     name: 'Dr. Admin',
     role: 'admin' as const,
   },
   {
     id: '2',
-    email: 'doctor@healix.com',
+    email: 'doctor@All The way.com',
     password: 'doctor123',
     name: 'Dr. Smith',
     role: 'doctor' as const,
@@ -54,7 +54,7 @@ export const loginUser = createAsyncThunk(
         role: foundUser.role,
       }
       // Save to localStorage
-      localStorage.setItem('healix_user', JSON.stringify(userData))
+      localStorage.setItem('All The way_user', JSON.stringify(userData))
       return userData
     }
 
@@ -72,12 +72,12 @@ const initialState: AuthState = {
 // Load user from localStorage on initialization
 const loadUserFromStorage = (): User | null => {
   if (typeof window === 'undefined') return null
-  const storedUser = localStorage.getItem('healix_user')
+  const storedUser = localStorage.getItem('All The way_user')
   if (storedUser) {
     try {
       return JSON.parse(storedUser)
     } catch (error) {
-      localStorage.removeItem('healix_user')
+      localStorage.removeItem('All The way_user')
       return null
     }
   }
@@ -100,7 +100,7 @@ const authSlice = createSlice({
       state.user = null
       state.isAuthenticated = false
       state.error = null
-      localStorage.removeItem('healix_user')
+      localStorage.removeItem('All The way_user')
     },
     clearError: (state) => {
       state.error = null

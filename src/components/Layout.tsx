@@ -13,6 +13,7 @@ import {
 } from './ui/breadcrumb'
 import { ModeToggle } from './mode-toggle'
 import { NotificationPopover } from './shared/notifications'
+import { Logo } from './shared/Logo'
 
 interface LayoutProps {
   children: ReactNode
@@ -69,8 +70,9 @@ export function Layout({ children }: LayoutProps) {
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem className="hidden md:block">
-                <BreadcrumbLink href="/">
-                  Healix
+                <BreadcrumbLink href="/" className="flex items-center">
+                  <Logo variant="header" size="sm" showText={false} className="mr-2" />
+                  <span className="ml-2">All The Way</span>
                 </BreadcrumbLink>
               </BreadcrumbItem>
               <BreadcrumbSeparator className="hidden md:block" />

@@ -77,7 +77,7 @@ function SupportTicketsPage() {
       status: 'open',
       priority: 'medium',
       clientName: 'Admin User', // In real app, get from auth
-      clientEmail: 'admin@healix.com',
+      clientEmail: 'admin@All The way.com',
       userType: 'staff',
       responsibleEmployee: 'Unassigned',
       responsibleEmployeeId: '',

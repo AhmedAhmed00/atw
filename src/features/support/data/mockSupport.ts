@@ -165,7 +165,7 @@ export const mockSupportTickets: SupportTicket[] = [
     status: 'in_progress',
     priority: 'urgent',
     clientName: 'Dr. Amanda Chen',
-    clientEmail: 'amanda.chen@healix.com',
+    clientEmail: 'amanda.chen@All The way.com',
     clientPhone: '+1 (555) 345-6789',
     userType: 'doctor',
     responsibleEmployee: 'Tech Support Team',

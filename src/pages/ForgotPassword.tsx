@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, Mail, ArrowLeft } from 'lucide-react'
-import { useTheme } from '@/components/theme-provider'
+import { Logo } from '@/components/shared/Logo'
 import { Link } from 'react-router-dom'
 
 export default function ForgotPassword() {
@@ -15,10 +15,6 @@ export default function ForgotPassword() {
   const [success, setSuccess] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
   const navigate = useNavigate()
-  const { theme } = useTheme()
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  const currentTheme = theme === 'system' ? systemTheme : theme
-  const isDark = currentTheme === 'dark'
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -32,8 +28,8 @@ export default function ForgotPassword() {
       
       // Check if email exists in static users
       const STATIC_USERS = [
-        { email: 'admin@healix.com' },
-        { email: 'doctor@healix.com' },
+        { email: 'admin@All The way.com' },
+        { email: 'doctor@All The way.com' },
       ]
       
       const userExists = STATIC_USERS.some(u => u.email === email)
@@ -79,14 +75,7 @@ export default function ForgotPassword() {
       <Card className="w-full pb-12 max-w-md relative z-10 shadow-2xl border-t-4 border-t-[#09B0B6]">
         <CardHeader className="space-y-4 text-center pb-6">
           {/* Logo */}
-          <div className="flex justify-center">
-            <img
-              src={isDark ? "/Logos-Healix-White.png" : "/Logos-Healix.png"}
-              alt="Healix Logo"
-              className="h-auto w-40 select-none"
-              draggable="false"
-            />
-          </div>
+          <Logo variant="login" size="lg" className="justify-center" />
           
           <div>
             <CardTitle className="text-3xl font-bold bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent">
@@ -123,7 +112,7 @@ export default function ForgotPassword() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@healix.com"
+                  placeholder="admin@All The way.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"

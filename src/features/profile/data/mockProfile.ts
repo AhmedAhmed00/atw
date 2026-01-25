@@ -8,7 +8,7 @@ export const mockProfileData: ProfileData = {
   bio: "Experienced cardiologist with over 12 years of practice, specializing in interventional cardiology and preventive heart care.",
   
   // Contact Information
-  email: "sarah.johnson@healix.com",
+  email: "sarah.johnson@All The way.com",
   phone: "+1 (555) 123-4567",
   address: "123 Medical Plaza, Suite 500, San Francisco, CA 94102",
   

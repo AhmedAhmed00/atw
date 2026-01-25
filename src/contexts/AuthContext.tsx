@@ -21,14 +21,14 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined)
 const STATIC_USERS = [
   {
     id: '1',
-    email: 'admin@healix.com',
+    email: 'admin@All The way.com',
     password: 'admin123',
     name: 'Dr. Admin',
     role: 'admin' as const,
   },
   {
     id: '2',
-    email: 'doctor@healix.com',
+    email: 'doctor@All The way.com',
     password: 'doctor123',
     name: 'Dr. Smith',
     role: 'doctor' as const,
@@ -41,12 +41,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   // Check for existing session on mount
   useEffect(() => {
-    const storedUser = localStorage.getItem('healix_user')
+    const storedUser = localStorage.getItem('All The way_user')
     if (storedUser) {
       try {
         setUser(JSON.parse(storedUser))
       } catch (error) {
-        localStorage.removeItem('healix_user')
+        localStorage.removeItem('All The way_user')
       }
     }
     setIsLoading(false)
@@ -68,7 +68,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         role: foundUser.role,
       }
       setUser(userData)
-      localStorage.setItem('healix_user', JSON.stringify(userData))
+      localStorage.setItem('All The way_user', JSON.stringify(userData))
       return { success: true }
     }
 
@@ -77,7 +77,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const logout = () => {
     setUser(null)
-    localStorage.removeItem('healix_user')
+    localStorage.removeItem('All The way_user')
   }
 
   return (

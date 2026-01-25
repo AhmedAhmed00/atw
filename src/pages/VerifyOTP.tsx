@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, ArrowLeft, ShieldCheck } from 'lucide-react'
-import { useTheme } from '@/components/theme-provider'
+import { Logo } from '@/components/shared/Logo'
 import { Link } from 'react-router-dom'
 
 export default function VerifyOTP() {
@@ -15,10 +15,6 @@ export default function VerifyOTP() {
   const [isLoading, setIsLoading] = useState(false)
   const [timeLeft, setTimeLeft] = useState(600) // 10 minutes in seconds
   const navigate = useNavigate()
-  const { theme } = useTheme()
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  const currentTheme = theme === 'system' ? systemTheme : theme
-  const isDark = currentTheme === 'dark'
   const inputRefs = useRef<(HTMLInputElement | null)[]>([])
 
   useEffect(() => {
@@ -198,14 +194,7 @@ export default function VerifyOTP() {
       <Card className="w-full pb-12 max-w-md relative z-10 shadow-2xl border-t-4 border-t-[#09B0B6]">
         <CardHeader className="space-y-4 text-center pb-6">
           {/* Logo */}
-          <div className="flex justify-center">
-            <img
-              src={isDark ? "/Logos-Healix-White.png" : "/Logos-Healix.png"}
-              alt="Healix Logo"
-              className="h-auto w-40 select-none"
-              draggable="false"
-            />
-          </div>
+          <Logo variant="login" size="lg" className="justify-center" />
           
           <div>
             <CardTitle className="text-3xl font-bold bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent">

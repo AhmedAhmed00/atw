@@ -1,7 +1,7 @@
 # Authentication System Guide
 
 ## Overview
-The Healix Healthcare application now includes a complete authentication system that protects all routes and requires users to log in before accessing the dashboard.
+The All The way Healthcare application now includes a complete authentication system that protects all routes and requires users to log in before accessing the dashboard.
 
 ## Features
 
@@ -15,13 +15,13 @@ The Healix Healthcare application now includes a complete authentication system 
 ## Super User Credentials
 
 ### Admin Account
-- **Email:** `admin@healix.com`
+- **Email:** `admin@All The way.com`
 - **Password:** `admin123`
 - **Role:** Admin
 - **Name:** Dr. Admin
 
 ### Doctor Account
-- **Email:** `doctor@healix.com`
+- **Email:** `doctor@All The way.com`
 - **Password:** `doctor123`
 - **Role:** Doctor
 - **Name:** Dr. Smith
@@ -36,7 +36,7 @@ Manages the authentication state throughout the application:
 - Validates credentials against static user database
 
 ### 2. Login Page (`src/pages/Login.tsx`)
-- Beautiful branded interface with Healix logo
+- Beautiful branded interface with All The way logo
 - Email and password input fields
 - Show/hide password toggle
 - Quick-fill buttons for demo credentials
@@ -123,7 +123,7 @@ Edit `src/contexts/AuthContext.tsx`:
 const STATIC_USERS = [
   {
     id: '3',
-    email: 'nurse@healix.com',
+    email: 'nurse@All The way.com',
     password: 'nurse123',
     name: 'Nurse Jane',
     role: 'staff',
@@ -215,6 +215,6 @@ If you need to reset the demo:
 
 For development, you can clear the session via browser DevTools:
 ```javascript
-localStorage.removeItem('healix_user')
+localStorage.removeItem('All The way_user')
 ```
 

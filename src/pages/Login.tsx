@@ -7,8 +7,8 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
-import { Loader2, Lock, Mail, Eye, EyeOff, CheckCircle2 } from 'lucide-react'
-import { useTheme } from '@/components/theme-provider'
+import { Loader2, Eye, EyeOff, CheckCircle2, Mail, Lock } from 'lucide-react'
+import { Logo } from '@/components/shared/Logo'
 
 export default function Login() {
   const [email, setEmail] = useState('')
@@ -19,10 +19,6 @@ export default function Login() {
   const { isLoading, error, isAuthenticated } = useAppSelector((state) => state.auth)
   const navigate = useNavigate()
   const location = useLocation()
-  const { theme } = useTheme()
-  const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
-  const currentTheme = theme === 'system' ? systemTheme : theme
-  const isDark = currentTheme === 'dark'
 
   useEffect(() => {
     // Check for success message from navigation state
@@ -67,17 +63,10 @@ export default function Login() {
       <Card className="w-full pb-12 max-w-md relative z-10 shadow-2xl border-t-4 border-t-[#09B0B6]">
         <CardHeader className="space-y-4 text-center pb-6">
           {/* Logo */}
-          <div className="flex justify-center">
-            <img
-              src={isDark ? "/Logos-Healix-White.png" : "/Logos-Healix.png"}
-              alt="Healix Logo"
-              className="h-auto w-40 select-none"
-              draggable="false"
-            />
-          </div>
+          <Logo variant="login" size="lg" className="justify-center" />
           
           <div>
-            <CardTitle className="text-3xl font-bold bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent">
+            <CardTitle className="text-3xl font-bold bg-linear-to-r from-[#09B0B6] to-[#05647A] bg-clip-text text-transparent">
               Welcome Back
             </CardTitle>
             <CardDescription className="text-base mt-2">
@@ -108,11 +97,11 @@ export default function Login() {
                 Email Address
               </Label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10 pointer-events-none" />
                 <Input
                   id="email"
                   type="email"
-                  placeholder="admin@healix.com"
+                  placeholder="admin@alltheway.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="pl-10"
@@ -135,7 +124,7 @@ export default function Login() {
                 </Link>
               </div>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground z-10 pointer-events-none" />
                 <Input
                   id="password"
                   type={showPassword ? 'text' : 'password'}
@@ -149,7 +138,7 @@ export default function Login() {
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors z-10"
                   disabled={isLoading}
                 >
                   {showPassword ? (
