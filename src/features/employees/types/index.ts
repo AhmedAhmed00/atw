@@ -25,7 +25,7 @@ export interface PendingApproval {
   employeeName: string
   jobTitle: string
   requestType: 'leave' | 'certification' | 'shift-change' | 'department-transfer'
-  status: 'pending-review' | 'partially-approved'
+  status: 'pending' | 'approved' | 'rejected'
   submittedDate: string
   reviewDate?: string
   reviewer?: string

@@ -12,6 +12,10 @@ import {
   CheckSquare,
   Building2,
   UserCheck,
+  Car,
+  Route,
+  Receipt,
+  MessageSquare,
 } from "lucide-react"
 import type { NavSection } from "./types"
 
@@ -52,26 +56,6 @@ export const navigationSections: NavSection[] = [
     ],
   },
   {
-    label: "Management",
-    items: [
-      {
-        title: "Profile",
-        url: "/profile",
-        icon: UserCircle,
-      },
-      {
-        title: "Services",
-        url: "/services",
-        icon: Briefcase,
-      },
-      {
-        title: "Working Hours",
-        url: "/working-hours",
-        icon: Clock,
-      },
-    ],
-  },
-  {
     label: "Clients",
     items: [
       {
@@ -87,22 +71,42 @@ export const navigationSections: NavSection[] = [
     ],
   },
   {
+    label: "Fleet",
+    items: [
+      {
+        title: "Vehicles",
+        url: "/fleet/vehicles",
+        icon: Car,
+      },
+    ],
+  },
+  {
     label: "Operations",
     items: [
       {
-        title: "Appointments",
-        url: "/appointments",
-        icon: Users,
+        title: "Trips",
+        url: "/operations/trips",
+        icon: Route,
       },
+    ],
+  },
+  {
+    label: "Finance",
+    items: [
       {
-        title: "Payments",
-        url: "/payments",
-        icon: CreditCard,
+        title: "Invoices",
+        url: "/finance/invoices",
+        icon: Receipt,
       },
+    ],
+  },
+  {
+    label: "Communication",
+    items: [
       {
-        title: "Support",
-        url: "/support",
-        icon: HeadsetIcon,
+        title: "Chat",
+        url: "/communication/chat",
+        icon: MessageSquare,
       },
     ],
   },

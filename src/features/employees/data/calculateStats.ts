@@ -11,8 +11,8 @@ export function calculateEmployeeStats(employees: Employee[]): EmployeeStats {
 
 export function calculatePendingApprovalStats(approvals: PendingApproval[]): PendingApprovalStats {
   return {
-    pendingReview: approvals.filter(approval => approval.status === 'pending-review').length,
-    partiallyApproved: approvals.filter(approval => approval.status === 'partially-approved').length,
+    pendingReview: approvals.filter(approval => approval.status === 'pending').length,
+    partiallyApproved: approvals.filter(approval => approval.status === 'approved').length,
     totalPending: approvals.length,
   }
 }

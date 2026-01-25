@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label'
 import { Calendar } from 'lucide-react'
 import { Attendance } from '../types'
+import { filterByDateRange, type DateFilterType } from '@/lib/date-utils'
 
 export type PeriodFilter = 'today' | 'yesterday' | 'this-week' | 'last-week' | 'this-month' | 'last-month' | 'custom' | 'all'
 
@@ -51,12 +52,8 @@ export function filterAttendanceByPeriod(
   const now = new Date()
   const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
   
+  // Handle special cases that aren't in the generic filter
   switch (period) {
-    case 'today': {
-      const todayStr = today.toISOString().split('T')[0]
-      return attendance.filter(a => a.date === todayStr)
-    }
-    
     case 'yesterday': {
       const yesterday = new Date(today)
       yesterday.setDate(yesterday.getDate() - 1)
@@ -64,31 +61,14 @@ export function filterAttendanceByPeriod(
       return attendance.filter(a => a.date === yesterdayStr)
     }
     
-    case 'this-week': {
-      const startOfWeek = new Date(today)
-      startOfWeek.setDate(today.getDate() - today.getDay()) // Sunday
-      return attendance.filter(a => {
-        const recordDate = new Date(a.date)
-        return recordDate >= startOfWeek && recordDate <= today
-      })
-    }
-    
     case 'last-week': {
       const startOfLastWeek = new Date(today)
-      startOfLastWeek.setDate(today.getDate() - today.getDay() - 7) // Last Sunday
+      startOfLastWeek.setDate(today.getDate() - today.getDay() - 7)
       const endOfLastWeek = new Date(startOfLastWeek)
-      endOfLastWeek.setDate(startOfLastWeek.getDate() + 6) // Last Saturday
+      endOfLastWeek.setDate(startOfLastWeek.getDate() + 6)
       return attendance.filter(a => {
         const recordDate = new Date(a.date)
         return recordDate >= startOfLastWeek && recordDate <= endOfLastWeek
-      })
-    }
-    
-    case 'this-month': {
-      const startOfMonth = new Date(today.getFullYear(), today.getMonth(), 1)
-      return attendance.filter(a => {
-        const recordDate = new Date(a.date)
-        return recordDate >= startOfMonth && recordDate <= today
       })
     }
     
@@ -101,13 +81,8 @@ export function filterAttendanceByPeriod(
       })
     }
     
-    case 'custom':
-      // For custom, return all - the date picker would handle filtering
-      return attendance
-      
-    case 'all':
     default:
-      return attendance
+      return filterByDateRange(attendance, (a) => a.date, period as DateFilterType)
   }
 }
 

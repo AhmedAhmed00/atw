@@ -1,4 +1,5 @@
 import { ColumnDef } from '@tanstack/react-table'
+import { Link } from 'react-router-dom'
 import { Employee } from '../types'
 import { SortableHeader } from '@/components/shared/table'
 import { Badge } from '@/components/ui/badge'
@@ -29,17 +30,17 @@ export const employeeColumns: ColumnDef<Employee>[] = [
         .slice(0, 2)
       
       return (
-        <div className="flex items-center gap-3">
+        <Link to={`/employees/${employee.id}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <Avatar className="h-9 w-9">
             <AvatarFallback className="bg-linear-to-br from-[#09B0B6] to-[#05647A] text-white text-xs font-semibold">
               {initials}
             </AvatarFallback>
           </Avatar>
           <div>
-            <div className="font-medium text-[#05647A]">{employee.name}</div>
+            <div className="font-medium text-[#05647A] hover:underline">{employee.name}</div>
             <div className="text-xs text-muted-foreground">{employee.email}</div>
           </div>
-        </div>
+        </Link>
       )
     },
   },
@@ -143,9 +144,11 @@ export const employeeColumns: ColumnDef<Employee>[] = [
               Copy employee ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Eye className="mr-2 h-4 w-4" />
-              View details
+            <DropdownMenuItem asChild>
+              <Link to={`/employees/${employee.id}`} className="flex items-center">
+                <Eye className="mr-2 h-4 w-4" />
+                View details
+              </Link>
             </DropdownMenuItem>
             <DropdownMenuItem>
               <Pencil className="mr-2 h-4 w-4" />

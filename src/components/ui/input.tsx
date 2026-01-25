@@ -24,7 +24,9 @@ const Input = React.forwardRef<HTMLInputElement, React.ComponentProps<"input">>(
           "placeholder:text-muted-foreground",
           "focus-visible:outline-none",
           "disabled:cursor-not-allowed disabled:opacity-50",
-          "aria-invalid:border-destructive aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40",
+          "aria-invalid:border-red-500 dark:aria-invalid:border-red-500",
+          "aria-invalid:ring-red-500/20 dark:aria-invalid:ring-red-500/40",
+          "aria-invalid:focus-visible:border-red-500 aria-invalid:focus-visible:ring-red-500/20",
           className
         )}
         ref={ref}

@@ -3,23 +3,105 @@
  * Page for managing patients
  */
 
+import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/shared/page-header'
-import { UserCheck } from 'lucide-react'
+import { UserCheck, Upload, Download, Plus } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { DataTable } from '@/components/shared/table'
+import {
+  PatientStatsCards,
+  MedicalConditionsChart,
+  PatientStatusOverviewChart,
+  TopActivePatientsChart,
+  patientColumns,
+} from '../components'
+import {
+  patientStats,
+  medicalConditionDistribution,
+  patientStatusOverview,
+  topActivePatients,
+  patients,
+} from '../data/mockPatientsData'
 
 export function PatientsPage() {
+  const navigate = useNavigate()
+
+  const handleAddPatient = () => {
+    navigate('/clients/patients/new')
+  }
+
+  const handleImport = () => {
+    // TODO: Implement import functionality
+    console.log('Import patients')
+  }
+
+  const handleExport = () => {
+    // TODO: Implement export functionality
+    console.log('Export patients')
+  }
+
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Patients"
-        description="Manage patient records and information"
-        icon={UserCheck}
-      />
-
-      <div className="text-center py-12 text-muted-foreground">
-        <UserCheck className="h-12 w-12 mx-auto mb-4 opacity-50" />
-        <p className="text-lg font-medium">Patients Management</p>
-        <p className="text-sm mt-2">Patient content will be displayed here</p>
+      <div className="flex items-start justify-between gap-4">
+        <PageHeader
+          title="Individual Patients"
+          description="Personal medical transport clients management"
+          icon={UserCheck}
+        />
+        <div className="flex items-center gap-2 shrink-0 flex-wrap">
+          <Button
+            variant="outline"
+            onClick={handleImport}
+            className="gap-2"
+          >
+            <Upload className="h-4 w-4" />
+            Import
+          </Button>
+          <Button
+            variant="outline"
+            onClick={handleExport}
+            className="gap-2"
+          >
+            <Download className="h-4 w-4" />
+            Export
+          </Button>
+          <Button
+            onClick={handleAddPatient}
+            className="gap-2 bg-linear-to-r from-[#09B0B6] to-[#05647A] text-white hover:opacity-90"
+          >
+            <Plus className="h-4 w-4" />
+            Add Patient
+          </Button>
+        </div>
       </div>
+
+      {/* Stats Cards */}
+      <PatientStatsCards stats={patientStats} />
+
+      {/* Charts Section */}
+      <div className="grid gap-4 md:gap-6 grid-cols-1 lg:grid-cols-2">
+        <MedicalConditionsChart data={medicalConditionDistribution} />
+        <PatientStatusOverviewChart data={patientStatusOverview} />
+      </div>
+
+      {/* Top Active Patients Chart */}
+      <TopActivePatientsChart data={topActivePatients} />
+
+      {/* Patients Table */}
+      <Card>
+        <CardHeader>
+          <CardTitle className="text-lg md:text-xl text-[#05647A] dark:text-[#09B0B6]">
+            Patients
+          </CardTitle>
+          <CardDescription className="text-xs md:text-sm">
+            Complete list of all individual patients and their details
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <DataTable columns={patientColumns} data={patients} />
+        </CardContent>
+      </Card>
     </div>
   )
 }

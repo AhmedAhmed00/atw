@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useNavigate, Link, useLocation } from 'react-router-dom'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAppDispatch, useAppSelector } from '@/store/hooks'
+import { loginUser, clearError } from '@/store/slices/authSlice'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -13,10 +14,9 @@ export default function Login() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [showPassword, setShowPassword] = useState(false)
-  const [error, setError] = useState('')
   const [successMessage, setSuccessMessage] = useState('')
-  const [isLoading, setIsLoading] = useState(false)
-  const { login } = useAuth()
+  const dispatch = useAppDispatch()
+  const { isLoading, error, isAuthenticated } = useAppSelector((state) => state.auth)
   const navigate = useNavigate()
   const location = useLocation()
   const { theme } = useTheme()
@@ -33,22 +33,24 @@ export default function Login() {
     }
   }, [location])
 
+  // Redirect if already authenticated
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate('/', { replace: true })
+    }
+  }, [isAuthenticated, navigate])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    setError('')
-    setIsLoading(true)
+    dispatch(clearError())
 
-    try {
-      const result = await login(email, password)
-      if (result.success) {
-        navigate('/')
-      } else {
-        setError(result.error || 'Login failed')
-      }
-    } catch (err) {
-      setError('An unexpected error occurred')
-    } finally {
-      setIsLoading(false)
+    if (!email || !password) {
+      return
+    }
+
+    const result = await dispatch(loginUser({ email, password }))
+    if (loginUser.fulfilled.match(result)) {
+      navigate('/', { replace: true })
     }
   }
 

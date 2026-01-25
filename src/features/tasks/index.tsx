@@ -4,13 +4,17 @@
  */
 
 import { useState, useMemo } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/shared/page-header'
-import { CheckSquare } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { CheckSquare, Plus } from 'lucide-react'
 import { TasksStatsCards, TasksTable, DateFilter, SortSelector, filterTasksByDate } from './components'
 import { mockTasks } from './data/mockData'
-import { DateFilter as DateFilterType, SortOption, Task } from './types'
+import { DateFilter as DateFilterType, SortOption } from './types'
+import { sortByPriorityThenDate, sortByDate, sortByPriority, sortByStatus } from '@/lib/sort-utils'
 
 export function TasksPage() {
+  const navigate = useNavigate()
   const [dateFilter, setDateFilter] = useState<DateFilterType>('all')
   const [sortOption, setSortOption] = useState<SortOption>('urgency')
 
@@ -25,39 +29,19 @@ export function TasksPage() {
     
     switch (sortOption) {
       case 'urgency': {
-        // Sort by priority (critical first) then by due date
-        const priorityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 }
-        return tasks.sort((a, b) => {
-          const priorityDiff = priorityOrder[a.priority] - priorityOrder[b.priority]
-          if (priorityDiff !== 0) return priorityDiff
-          return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-        })
+        return sortByPriorityThenDate(tasks, (t) => t.priority, (t) => t.dueDate)
       }
       
       case 'date': {
-        return tasks.sort((a, b) => {
-          return new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
-        })
+        return sortByDate(tasks, (t) => t.dueDate, 'asc')
       }
       
       case 'priority': {
-        const priorityOrder: Record<string, number> = { critical: 0, high: 1, medium: 2, low: 3 }
-        return tasks.sort((a, b) => {
-          return priorityOrder[a.priority] - priorityOrder[b.priority]
-        })
+        return sortByPriority(tasks, (t) => t.priority)
       }
       
       case 'status': {
-        const statusOrder: Record<string, number> = { 
-          'in-progress': 0, 
-          'pending': 1, 
-          'overdue': 2, 
-          'completed': 3, 
-          'cancelled': 4 
-        }
-        return tasks.sort((a, b) => {
-          return statusOrder[a.status] - statusOrder[b.status]
-        })
+        return sortByStatus(tasks, (t) => t.status)
       }
       
       default:
@@ -67,11 +51,20 @@ export function TasksPage() {
 
   return (
     <div className="space-y-6">
-      <PageHeader
-        title="Tasks Management"
-        description="Track and manage all tasks, responses, maintenance, and alerts"
-        icon={CheckSquare}
-      />
+      <div className="flex items-center justify-between gap-4">
+        <PageHeader
+          title="Tasks Management"
+          description="Track and manage all tasks, responses, maintenance, and alerts"
+          icon={CheckSquare}
+        />
+        <Button
+          onClick={() => navigate('/tasks/new')}
+          className="gap-2 bg-linear-to-r from-[#09B0B6] to-[#05647A] text-white hover:opacity-90"
+        >
+          <Plus className="h-4 w-4" />
+          Add Task
+        </Button>
+      </div>
 
       {/* Stats Cards */}
       <TasksStatsCards tasks={mockTasks} />

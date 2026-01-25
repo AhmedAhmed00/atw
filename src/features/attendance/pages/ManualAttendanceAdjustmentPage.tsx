@@ -95,7 +95,7 @@ export function ManualAttendanceAdjustmentPage() {
         <Button
           variant="outline"
           onClick={() => navigate('/attendance')}
-          className="gap-2"
+          className="gap-2 border-[#09B0B6] text-[#05647A] hover:bg-[#09B0B6]/10 hover:text-[#09B0B6] dark:hover:bg-[#09B0B6]/20 transition-all"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to Attendance

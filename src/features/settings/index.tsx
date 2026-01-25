@@ -3,104 +3,106 @@
  * Main settings module for system configuration
  */
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { Building2, ShieldCheck, ImageIcon, Bell, Settings as SettingsIcon } from 'lucide-react'
-import { HCPDataSection, PasswordSection, LogoSection, NotificationsSection } from './components'
-import { mockHCPData, mockNotificationPreferences } from './data/mockSettings'
-import type { HCPData, NotificationPreferences } from './types'
+import { Building2, Globe, Clock, Car, Award, Users, Settings as SettingsIcon } from 'lucide-react'
+import { PageHeader } from '@/components/shared/page-header'
+import { CompanyInfoTab } from './components/CompanyInfoTab'
+import { RegionalTab } from './components/RegionalTab'
+import { WorkSettingsTab } from './components/WorkSettingsTab'
+import { VehicleTypesTab } from './components/VehicleTypesTab'
+import { CertificationsTab } from './components/CertificationsTab'
+import { UsersRolesTab } from './components/UsersRolesTab'
 
 export function SettingsPage() {
-  const [hcpData, setHCPData] = useState<HCPData>(mockHCPData)
-  const [notificationPreferences, setNotificationPreferences] = useState<NotificationPreferences>(
-    mockNotificationPreferences
-  )
+  const location = useLocation()
+  const [activeTab, setActiveTab] = useState('company-info')
 
-  const handleHCPDataSave = (data: Partial<HCPData>) => {
-    setHCPData((prev) => ({ ...prev, ...data }))
-    console.log('HCP Data saved:', data)
-  }
-
-  const handlePasswordSave = (data: { currentPassword: string; newPassword: string }) => {
-    console.log('Password updated:', data)
-  }
-
-  const handleLogoUpload = (file: File) => {
-    // In a real app, upload to server and get URL
-    const url = URL.createObjectURL(file)
-    setHCPData((prev) => ({ ...prev, logo: url }))
-    console.log('Logo uploaded:', file.name)
-  }
-
-  const handleLogoRemove = () => {
-    setHCPData((prev) => ({ ...prev, logo: undefined }))
-    console.log('Logo removed')
-  }
-
-  const handleNotificationsSave = (preferences: NotificationPreferences) => {
-    setNotificationPreferences(preferences)
-    console.log('Notification preferences saved:', preferences)
-  }
+  useEffect(() => {
+    const tabFromState = (location.state as { tab?: string })?.tab
+    if (tabFromState) {
+      setActiveTab(tabFromState)
+    }
+  }, [location.state])
 
   return (
     <div className="space-y-6">
-      {/* Header */}
-      <div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent flex items-center gap-3">
-          <SettingsIcon className="h-8 w-8 text-[rgb(var(--brand-primary))]" />
-          Settings
-        </h1>
-        <p className="text-muted-foreground mt-2">
-          Customize system preferences and control operational configurations
-        </p>
-      </div>
+      <PageHeader
+        title="Settings"
+        description="System configuration and preferences"
+        icon={SettingsIcon}
+      />
 
       {/* Settings Tabs */}
-      <Tabs defaultValue="hcp-data" className="space-y-6">
-        <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 lg:w-auto">
-          <TabsTrigger value="hcp-data" className="gap-2">
+      <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
+        <TabsList className="w-full justify-start h-auto p-1 bg-transparent rounded-xl flex-wrap gap-2">
+          <TabsTrigger 
+            value="company-info" 
+            className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
+          >
             <Building2 className="h-4 w-4" />
-            <span className="hidden sm:inline">HCP Data</span>
-            <span className="sm:hidden">HCP</span>
+            Company Info
           </TabsTrigger>
-          <TabsTrigger value="security" className="gap-2">
-            <ShieldCheck className="h-4 w-4" />
-            <span className="hidden sm:inline">Security</span>
-            <span className="sm:hidden">Security</span>
+          <TabsTrigger 
+            value="regional" 
+            className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
+          >
+            <Globe className="h-4 w-4" />
+            Regional
           </TabsTrigger>
-          <TabsTrigger value="branding" className="gap-2">
-            <ImageIcon className="h-4 w-4" />
-            <span className="hidden sm:inline">Branding</span>
-            <span className="sm:hidden">Logo</span>
+          <TabsTrigger 
+            value="work-settings" 
+            className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
+          >
+            <Clock className="h-4 w-4" />
+            Work Settings
           </TabsTrigger>
-          <TabsTrigger value="notifications" className="gap-2">
-            <Bell className="h-4 w-4" />
-            <span className="hidden sm:inline">Notifications</span>
-            <span className="sm:hidden">Alerts</span>
+          <TabsTrigger 
+            value="vehicle-types" 
+            className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
+          >
+            <Car className="h-4 w-4" />
+            Vehicle Types
+          </TabsTrigger>
+          <TabsTrigger 
+            value="certifications" 
+            className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
+          >
+            <Award className="h-4 w-4" />
+            Certifications
+          </TabsTrigger>
+          <TabsTrigger 
+            value="users-roles" 
+            className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
+          >
+            <Users className="h-4 w-4" />
+            Users & Roles
           </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="hcp-data" className="space-y-6">
-          <HCPDataSection data={hcpData} onSave={handleHCPDataSave} />
+        <TabsContent value="company-info" className="space-y-6">
+          <CompanyInfoTab />
         </TabsContent>
 
-        <TabsContent value="security" className="space-y-6">
-          <PasswordSection onSave={handlePasswordSave} />
+        <TabsContent value="regional" className="space-y-6">
+          <RegionalTab />
         </TabsContent>
 
-        <TabsContent value="branding" className="space-y-6">
-          <LogoSection
-            currentLogo={hcpData.logo}
-            onUpload={handleLogoUpload}
-            onRemove={handleLogoRemove}
-          />
+        <TabsContent value="work-settings" className="space-y-6">
+          <WorkSettingsTab />
         </TabsContent>
 
-        <TabsContent value="notifications" className="space-y-6">
-          <NotificationsSection
-            preferences={notificationPreferences}
-            onSave={handleNotificationsSave}
-          />
+        <TabsContent value="vehicle-types" className="space-y-6">
+          <VehicleTypesTab />
+        </TabsContent>
+
+        <TabsContent value="certifications" className="space-y-6">
+          <CertificationsTab />
+        </TabsContent>
+
+        <TabsContent value="users-roles" className="space-y-6">
+          <UsersRolesTab />
         </TabsContent>
       </Tabs>
     </div>

@@ -40,7 +40,7 @@ export function SidebarNavGroup({ section }: SidebarNavGroupProps) {
     <SidebarGroup className="space-y-0.5">
       <Collapsible open={isOpen} onOpenChange={setIsOpen}>
         <CollapsibleTrigger asChild>
-          <SidebarGroupLabel className="px-2 text-xs font-semibold text-muted-foreground/80 uppercase tracking-wider mb-1 cursor-pointer hover:text-foreground transition-colors flex items-center justify-between gap-1.5 group group-data-[collapsible=icon]:hidden">
+          <SidebarGroupLabel className="px-2 text-xs font-semibold text-muted-foreground/80 uppercase tracking-wider mb-1 cursor-pointer hover:text-foreground transition-colors flex items-center justify-between group group-data-[collapsible=icon]:hidden">
             <span className="flex-1">{section.label}</span>
             <ChevronRight
               className={cn(

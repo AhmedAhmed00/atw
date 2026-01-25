@@ -5,15 +5,14 @@
 
 import { useState } from 'react'
 import { PageHeader } from '@/components/shared/page-header'
-import { Calendar, Plus, Table2, CalendarDays } from 'lucide-react'
+import { Calendar, Plus } from 'lucide-react'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { ShiftsTable, ShiftsCalendarView, SwapRequestsTable, ShiftsStatsCards } from './components'
 import { mockShifts, mockSwapRequests } from './data/mockData'
 import { useNavigate } from 'react-router-dom'
-
-type ViewMode = 'table' | 'calendar'
+import { ViewToggle, type ViewMode } from '@/components/shared/view-toggle'
 
 export function ShiftsPage() {
   const navigate = useNavigate()
@@ -45,34 +44,7 @@ export function ShiftsPage() {
           
           {/* View Toggle - Only show for All Shifts tab */}
           {activeTab === 'all-shifts' && (
-            <div className="flex items-center gap-2 bg-muted p-1 rounded-lg">
-              <Button
-                variant={viewMode === 'table' ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => setViewMode('table')}
-                className={`gap-2 ${
-                  viewMode === 'table'
-                    ? 'bg-linear-to-r from-[#09B0B6] to-[#05647A] text-white hover:opacity-90'
-                    : 'hover:bg-accent'
-                }`}
-              >
-                <Table2 className="h-4 w-4" />
-                Table
-              </Button>
-              <Button
-                variant={viewMode === 'calendar' ? 'default' : 'ghost'}
-                size="sm"
-                onClick={() => setViewMode('calendar')}
-                className={`gap-2 ${
-                  viewMode === 'calendar'
-                    ? 'bg-linear-to-r from-[#09B0B6] to-[#05647A] text-white hover:opacity-90'
-                    : 'hover:bg-accent'
-                }`}
-              >
-                <CalendarDays className="h-4 w-4" />
-                Calendar
-              </Button>
-            </div>
+            <ViewToggle value={viewMode} onChange={setViewMode} />
           )}
         </div>
 

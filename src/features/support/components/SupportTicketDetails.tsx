@@ -117,24 +117,14 @@ export function SupportTicketDetails() {
     <div className="space-y-6">
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-        <div className="flex items-center gap-4">
-          <Button
-            variant="outline"
-            size="icon"
-            onClick={() => navigate('/support')}
-            className="shrink-0"
-          >
-            <ArrowLeft className="w-4 h-4" />
-          </Button>
-          <div>
-            <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
-              Support Ticket
-            </h1>
-            <p className="text-sm text-[rgb(var(--brand-primary))] font-mono font-medium flex items-center gap-2 mt-1">
-              <Hash className="w-4 h-4" />
-              {ticket.ticketNumber}
-            </p>
-          </div>
+        <div>
+          <h1 className="text-2xl font-bold text-slate-900 dark:text-slate-100">
+            Support Ticket
+          </h1>
+          <p className="text-sm text-[rgb(var(--brand-primary))] font-mono font-medium flex items-center gap-2 mt-1">
+            <Hash className="w-4 h-4" />
+            {ticket.ticketNumber}
+          </p>
         </div>
         <div className="flex items-center gap-2">
           <Badge
@@ -157,6 +147,14 @@ export function SupportTicketDetails() {
           >
             {statusConfig.label}
           </Badge>
+          <Button
+            variant="outline"
+            size="icon"
+            onClick={() => navigate('/support')}
+            className="shrink-0 border-[#09B0B6] text-[#05647A] hover:bg-[#09B0B6]/10 hover:text-[#09B0B6] dark:hover:bg-[#09B0B6]/20 transition-all"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Button>
         </div>
       </div>
 

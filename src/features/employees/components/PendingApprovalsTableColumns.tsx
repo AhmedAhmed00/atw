@@ -4,7 +4,7 @@ import { SortableHeader } from '@/components/shared/table'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Button } from '@/components/ui/button'
-import { MoreHorizontal, Eye, CheckCircle2, XCircle } from 'lucide-react'
+import { MoreHorizontal, CheckCircle2, XCircle, FileSearch } from 'lucide-react'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
+import { NavigateFunction } from 'react-router-dom'
 
 const requestTypeLabels: Record<PendingApproval['requestType'], string> = {
   'leave': 'Leave Request',
@@ -22,7 +23,12 @@ const requestTypeLabels: Record<PendingApproval['requestType'], string> = {
   'department-transfer': 'Department Transfer',
 }
 
-export const pendingApprovalsColumns: ColumnDef<PendingApproval>[] = [
+interface PendingApprovalsColumnsProps {
+  navigate: NavigateFunction
+  onReject?: (approval: PendingApproval) => void
+}
+
+export const getPendingApprovalsColumns = ({ navigate, onReject }: PendingApprovalsColumnsProps): ColumnDef<PendingApproval>[] => [
   {
     accessorKey: 'employeeName',
     header: ({ column }) => <SortableHeader column={column}>Employee</SortableHeader>,
@@ -66,22 +72,66 @@ export const pendingApprovalsColumns: ColumnDef<PendingApproval>[] = [
     accessorKey: 'status',
     header: ({ column }) => <SortableHeader column={column}>Status</SortableHeader>,
     cell: ({ row }) => {
-      const status = row.getValue('status') as string
+      const approval = row.original
+      const status = row.getValue('status') as PendingApproval['status']
+      
       const statusConfig = {
-        'pending-review': {
-          label: 'Pending Review',
+        'pending': {
+          label: 'Pending',
           variant: 'secondary' as const,
-          className: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border-yellow-300 dark:border-yellow-700',
+          className: 'bg-yellow-100 text-yellow-700 dark:bg-yellow-900/30 dark:text-yellow-400 border-yellow-300 dark:border-yellow-700 cursor-pointer hover:opacity-80 transition-opacity',
         },
-        'partially-approved': {
-          label: 'Partially Approved',
-          variant: 'outline' as const,
-          className: 'border-[#09B0B6] text-[#05647A]',
+        'approved': {
+          label: 'Approved',
+          variant: 'default' as const,
+          className: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border-green-300 dark:border-green-700',
+        },
+        'rejected': {
+          label: 'Rejected',
+          variant: 'destructive' as const,
+          className: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border-red-300 dark:border-red-700',
         },
       }
       
-      const config = statusConfig[status as keyof typeof statusConfig] || statusConfig['pending-review']
+      const config = statusConfig[status]
       
+      const handleAccept = () => {
+        // TODO: Implement accept logic
+        console.log('Accept:', approval.id)
+      }
+
+      const handleReject = () => {
+        // This will be handled by the parent component via callback
+        if (onReject) {
+          onReject(approval)
+        }
+      }
+      
+      // If status is pending, make it clickable with dropdown
+      if (status === 'pending') {
+        return (
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Badge variant={config.variant} className={cn('border', config.className)}>
+                {config.label}
+              </Badge>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start">
+              <DropdownMenuLabel>Change Status</DropdownMenuLabel>
+              <DropdownMenuItem onClick={handleAccept} className="text-green-600">
+                <CheckCircle2 className="mr-2 h-4 w-4" />
+                Accept
+              </DropdownMenuItem>
+              <DropdownMenuItem onClick={handleReject} className="text-red-600">
+                <XCircle className="mr-2 h-4 w-4" />
+                Reject
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        )
+      }
+      
+      // For approved/rejected, just show the badge
       return (
         <Badge variant={config.variant} className={cn('border', config.className)}>
           {config.label}
@@ -122,6 +172,10 @@ export const pendingApprovalsColumns: ColumnDef<PendingApproval>[] = [
     cell: ({ row }) => {
       const approval = row.original
 
+      const handleReview = () => {
+        navigate(`/employees/pending-approvals/${approval.id}/review`)
+      }
+
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -138,17 +192,9 @@ export const pendingApprovalsColumns: ColumnDef<PendingApproval>[] = [
               Copy approval ID
             </DropdownMenuItem>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
-              <Eye className="mr-2 h-4 w-4" />
-              View details
-            </DropdownMenuItem>
-            <DropdownMenuItem>
-              <CheckCircle2 className="mr-2 h-4 w-4" />
-              Approve
-            </DropdownMenuItem>
-            <DropdownMenuItem className="text-destructive">
-              <XCircle className="mr-2 h-4 w-4" />
-              Reject
+            <DropdownMenuItem onClick={handleReview}>
+              <FileSearch className="mr-2 h-4 w-4" />
+              Review
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
@@ -156,4 +202,7 @@ export const pendingApprovalsColumns: ColumnDef<PendingApproval>[] = [
     },
   },
 ]
+
+// Default export for backward compatibility (will be deprecated)
+export const pendingApprovalsColumns = getPendingApprovalsColumns
 

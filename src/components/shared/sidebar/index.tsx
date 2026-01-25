@@ -6,14 +6,15 @@ import { LogOut } from "lucide-react"
 import { SidebarLogo } from "./SidebarLogo"
 import { SidebarNavGroup } from "./SidebarNavGroup"
 import { navigationSections } from "./navigationData"
-import { useAuth } from "@/contexts/AuthContext"
+import { useAppDispatch } from '@/store/hooks'
+import { logout } from '@/store/slices/authSlice'
 
 export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
-  const { logout } = useAuth()
+  const dispatch = useAppDispatch()
   const navigate = useNavigate()
 
   const handleLogout = () => {
-    logout()
+    dispatch(logout())
     navigate('/login')
   }
 
@@ -23,13 +24,11 @@ export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
         <SidebarLogo />
       </SidebarHeader>
 
-      <SidebarContent className="px-3 py-2">
+      <SidebarContent className="px-3 py-2 ">
         {navigationSections.map((section, index) => (
           <div key={section.label}>
             <SidebarNavGroup section={section} />
-            {index < navigationSections.length - 1 && (
-              <div className="h-px bg-[#09B0B6]/30 my-2 mx-2 group-data-[collapsible=icon]:hidden" />
-            )}
+            
           </div>
         ))}
       </SidebarContent>

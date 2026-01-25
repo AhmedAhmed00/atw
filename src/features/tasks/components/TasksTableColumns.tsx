@@ -18,6 +18,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { cn } from '@/lib/utils'
+import { PRIORITY_ORDER } from '@/lib/sort-utils'
 
 const statusConfig: Record<TaskStatus, { label: string; variant: 'default' | 'secondary' | 'destructive' | 'outline'; className?: string }> = {
   pending: {
@@ -163,9 +164,8 @@ export const tasksColumns: ColumnDef<Task>[] = [
       )
     },
     sortingFn: (rowA, rowB) => {
-      const priorityOrder: TaskPriority[] = ['critical', 'high', 'medium', 'low']
-      const priorityA = priorityOrder.indexOf(rowA.original.priority)
-      const priorityB = priorityOrder.indexOf(rowB.original.priority)
+      const priorityA = PRIORITY_ORDER[rowA.original.priority] ?? 999
+      const priorityB = PRIORITY_ORDER[rowB.original.priority] ?? 999
       return priorityA - priorityB
     },
   },

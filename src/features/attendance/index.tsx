@@ -6,7 +6,7 @@
 import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/shared/page-header'
-import { ClipboardCheck, Table2, CalendarDays, Plus, FileDown } from 'lucide-react'
+import { ClipboardCheck, Plus, FileDown } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import {
@@ -18,8 +18,7 @@ import {
 } from './components'
 import { mockAttendance } from './data/mockData'
 import { exportAttendanceToExcel } from './utils/exportToExcel'
-
-type ViewMode = 'table' | 'calendar'
+import { ViewToggle, type ViewMode } from '@/components/shared/view-toggle'
 
 export function AttendancePage() {
   const navigate = useNavigate()
@@ -65,27 +64,7 @@ export function AttendancePage() {
       {/* View Toggle and Period Filter */}
       <div className="flex items-center justify-between gap-4">
         <PeriodFilter value={periodFilter} onChange={setPeriodFilter} />
-        
-        <div className="flex items-center gap-2 bg-muted p-1 rounded-lg">
-          <Button
-            variant={viewMode === 'table' ? 'default' : 'ghost'}
-            size="sm"
-            onClick={() => setViewMode('table')}
-            className="gap-2"
-          >
-            <Table2 className="h-4 w-4" />
-            Table View
-          </Button>
-          <Button
-            variant={viewMode === 'calendar' ? 'default' : 'ghost'}
-            size="sm"
-            onClick={() => setViewMode('calendar')}
-            className="gap-2"
-          >
-            <CalendarDays className="h-4 w-4" />
-            Calendar View
-          </Button>
-        </div>
+        <ViewToggle value={viewMode} onChange={setViewMode} />
       </div>
 
       {/* Table or Calendar View */}

@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from 'react-router'
 import { Layout } from './components/Layout'
 import { ScrollRestoration } from './components/ScrollRestoration'
 import { ProtectedRoute } from './components/ProtectedRoute'
-import { AuthProvider, useAuth } from './contexts/AuthContext'
+import { useAppSelector } from './store/hooks'
 import { Loader2 } from 'lucide-react'
 
 // Loading component
@@ -38,13 +38,39 @@ const AttendancePage = lazy(() => import('./features/attendance'))
 const ManualAttendanceAdjustmentPage = lazy(() => import('./features/attendance/pages/ManualAttendanceAdjustmentPage').then(m => ({ default: m.ManualAttendanceAdjustmentPage })))
 const TasksPage = lazy(() => import('./features/tasks'))
 const InstitutionsPage = lazy(() => import('./features/clients/pages/InstitutionsPage'))
+const AddInstitutionPage = lazy(() => import('./features/clients/pages/AddInstitutionPage'))
 const PatientsPage = lazy(() => import('./features/clients/pages/PatientsPage'))
+const AddPatientPage = lazy(() => import('./features/clients/pages/AddPatientPage'))
+const PatientDetailPage = lazy(() => import('./features/clients/pages/PatientDetailPage'))
+const InstitutionDetailPage = lazy(() => import('./features/clients/pages/InstitutionDetailPage'))
+const CreateInvoicePage = lazy(() => import('./features/clients/pages/CreateInvoicePage'))
+const AddTripPage = lazy(() => import('./features/clients/pages/AddTripPage'))
+const VehiclesPage = lazy(() => import('./features/fleet/pages/VehiclesPage'))
+const AddVehiclePage = lazy(() => import('./features/fleet/pages/AddVehiclePage'))
+const TripsPage = lazy(() => import('./features/operations/pages/TripsPage'))
+const InvoicesPage = lazy(() => import('./features/finance/pages/InvoicesPage'))
+const CreateFinanceInvoicePage = lazy(() => import('./features/finance/pages/CreateInvoicePage'))
+const ChatPage = lazy(() => import('./features/communication/pages/ChatPage'))
+const ChatConversationsPage = lazy(() => import('./features/communication/pages/ChatConversationsPage'))
+const AddVehicleTypePage = lazy(() => import('./features/settings/pages/AddVehicleTypePage'))
+const RolesPage = lazy(() => import('./features/settings/pages/RolesPage'))
+const AddRolePage = lazy(() => import('./features/settings/pages/AddRolePage'))
+const UsersPage = lazy(() => import('./features/settings/pages/UsersPage'))
+const AddUserPage = lazy(() => import('./features/settings/pages/AddUserPage'))
+const EmployeeDetailPage = lazy(() => import('./features/employees/pages/EmployeeDetailPage'))
+const AddTaskPage = lazy(() => import('./features/employees/pages/AddTaskPage'))
+const AddCertificationPage = lazy(() => import('./features/employees/pages/AddCertificationPage'))
+const ViewCertificationPage = lazy(() => import('./features/employees/pages/ViewCertificationPage'))
+const AddEmployeeSelectionPage = lazy(() => import('./features/employees/pages/AddEmployeeSelectionPage'))
+const QuickAddEmployeePage = lazy(() => import('./features/employees/pages/QuickAddEmployeePage'))
+const FullRegistrationPage = lazy(() => import('./features/employees/pages/FullRegistrationPage'))
+const ReviewEmployeePage = lazy(() => import('./features/employees/pages/ReviewEmployeePage'))
 const Login = lazy(() => import('./pages/Login'))
 const ForgotPassword = lazy(() => import('./pages/ForgotPassword'))
 const VerifyOTP = lazy(() => import('./pages/VerifyOTP'))
 
 function AppRoutes() {
-  const { isAuthenticated } = useAuth()
+  const { isAuthenticated } = useAppSelector((state) => state.auth)
 
   return (
     <>
@@ -75,14 +101,46 @@ function AppRoutes() {
                     <Routes>
                       <Route path="/" element={<DashboardPage />} />
                       <Route path="/employees" element={<EmployeesPage />} />
+                      <Route path="/employees/new" element={<AddEmployeeSelectionPage />} />
+                      <Route path="/employees/new/quick" element={<QuickAddEmployeePage />} />
+                      <Route path="/employees/new/full" element={<FullRegistrationPage />} />
+                      <Route path="/employees/pending-approvals/:approvalId/review" element={<ReviewEmployeePage />} />
+                      <Route path="/employees/:id" element={<EmployeeDetailPage />} />
+                      <Route path="/employees/:employeeId/tasks/new" element={<AddTaskPage />} />
+                      <Route path="/employees/:employeeId/certifications/new" element={<AddCertificationPage />} />
+                      <Route path="/employees/:employeeId/certifications/:certificationId" element={<ViewCertificationPage />} />
                       <Route path="/shifts" element={<ShiftsPage />} />
                       <Route path="/shifts/new" element={<CreateShiftPage />} />
                       <Route path="/shifts/swap-request/new" element={<SwapRequestFormPage />} />
                       <Route path="/attendance" element={<AttendancePage />} />
                       <Route path="/attendance/adjustment" element={<ManualAttendanceAdjustmentPage />} />
                       <Route path="/tasks" element={<TasksPage />} />
+                      <Route path="/tasks/new" element={<AddTaskPage />} />
                       <Route path="/clients/institutions" element={<InstitutionsPage />} />
+                      <Route path="/clients/institutions/new" element={<AddInstitutionPage />} />
+                      <Route path="/clients/institutions/:id" element={<InstitutionDetailPage />} />
+                      <Route path="/clients/institutions/:institutionId/invoices/new" element={<CreateInvoicePage />} />
+                      <Route path="/clients/institutions/:institutionId/trips/new" element={<AddTripPage />} />
+                      <Route path="/clients/trips/new" element={<AddTripPage />} />
                       <Route path="/clients/patients" element={<PatientsPage />} />
+                      <Route path="/fleet/vehicles" element={<VehiclesPage />} />
+                      <Route path="/fleet/vehicles/new" element={<AddVehiclePage />} />
+                      <Route path="/operations/trips" element={<TripsPage />} />
+                      <Route path="/operations/trips/new" element={<AddTripPage />} />
+                      <Route path="/finance/invoices" element={<InvoicesPage />} />
+                      <Route path="/finance/invoices/new" element={<CreateFinanceInvoicePage />} />
+                      <Route path="/communication/chat" element={<ChatPage />} />
+                      <Route path="/communication/chat/:chatType" element={<ChatConversationsPage />} />
+                      <Route path="/settings/vehicle-types/new" element={<AddVehicleTypePage />} />
+                      <Route path="/settings/vehicle-types/:id/edit" element={<AddVehicleTypePage />} />
+                      <Route path="/settings/roles" element={<RolesPage />} />
+                      <Route path="/settings/roles/new" element={<AddRolePage />} />
+                      <Route path="/settings/roles/:id/edit" element={<AddRolePage />} />
+                      <Route path="/settings/users" element={<UsersPage />} />
+                      <Route path="/settings/users/new" element={<AddUserPage />} />
+                      <Route path="/settings/users/:id/edit" element={<AddUserPage />} />
+                      <Route path="/clients/patients/new" element={<AddPatientPage />} />
+                      <Route path="/clients/patients/:id" element={<PatientDetailPage />} />
                       <Route path="/profile" element={<ProfilePage />} />
                       <Route path="/working-hours" element={<WorkingHoursPage />} />
                       <Route path="/appointments/*" element={<AppointmentsPage />} />
@@ -106,11 +164,7 @@ function AppRoutes() {
 }
 
 function App() {
-  return (
-    <AuthProvider>
-      <AppRoutes />
-    </AuthProvider>
-  )
+  return <AppRoutes />
 }
 
 export default App
