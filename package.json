@@ -5,13 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "build:skip-types": "vite build",
-    "prebuild": "echo 'Skipping TypeScript checks' || true",
-    "build:safe": "vite build || exit 0",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "typecheck": "tsc --noEmit || exit 0"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
