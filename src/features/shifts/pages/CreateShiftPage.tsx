@@ -29,11 +29,10 @@ import { Label } from '@/components/ui/label'
 import { PageHeader } from '@/components/shared/page-header'
 import { ArrowLeft, Calendar } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
-import { cn } from '@/lib/utils'
 
 export function CreateShiftPage() {
   const navigate = useNavigate()
-  const [shiftType, setShiftType] = useState<'open' | 'closed'>('open')
+  const [, setShiftType] = useState<'open' | 'closed'>('open')
 
   const form = useForm<ShiftFormValues>({
     resolver: zodResolver(shiftFormSchema),

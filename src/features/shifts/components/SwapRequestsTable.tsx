@@ -131,7 +131,7 @@ export const swapRequestsColumns: ColumnDef<SwapRequest>[] = [
   {
     id: 'statistics',
     header: 'Statistics',
-    cell: ({ row }) => {
+    cell: () => {
       // This would typically come from aggregated data
       // For now, showing a placeholder
       return (
@@ -143,7 +143,7 @@ export const swapRequestsColumns: ColumnDef<SwapRequest>[] = [
   },
   {
     id: 'actions',
-    cell: ({ row }) => {
+    cell: () => {
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>

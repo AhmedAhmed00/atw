@@ -46,7 +46,7 @@ export function SwapRequestFormPage() {
     },
   })
 
-  const selectedEmployeeId = form.watch('employeeId')
+  // const selectedEmployeeId = form.watch('employeeId')
   const selectedShiftId = form.watch('currentShiftId')
 
   // Get available shifts for selected employee

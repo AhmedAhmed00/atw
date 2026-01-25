@@ -7,7 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Label } from '@/components/ui/label'
 import { Calendar } from 'lucide-react'
 import { DateFilter as DateFilterType, Task } from '../types'
-import { filterByDateRange, type DateFilterType as SharedDateFilterType } from '@/lib/date-utils'
+import { filterByDateRange } from '@/lib/date-utils'
 
 interface DateFilterProps {
   value: DateFilterType

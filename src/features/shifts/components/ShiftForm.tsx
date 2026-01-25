@@ -28,7 +28,6 @@ import { useState, useMemo } from 'react'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
 
 interface ShiftFormProps {
   onSubmit: (data: ShiftFormValues) => void
@@ -37,7 +36,7 @@ interface ShiftFormProps {
 }
 
 export function ShiftForm({ onSubmit, onCancel, initialData }: ShiftFormProps) {
-  const [shiftType, setShiftType] = useState<'open' | 'closed'>(
+  const [, setShiftType] = useState<'open' | 'closed'>(
     (initialData?.shiftType as 'open' | 'closed') || 'open'
   )
 
@@ -53,15 +52,8 @@ export function ShiftForm({ onSubmit, onCancel, initialData }: ShiftFormProps) {
       hasVehicleRequirements: initialData?.hasVehicleRequirements || false,
       vehicleTypes: initialData?.vehicleTypes || [],
       roleRequirements: initialData?.roleRequirements || [{ role: '', quantity: 1 }],
-      ...(initialData?.shiftType === 'open'
-        ? {
-            availableEmployees: initialData?.availableEmployees || [],
-            instructions: initialData?.instructions || '',
-          }
-        : {
-            scheduleDetails: initialData?.scheduleDetails || '',
-            assignedEmployees: initialData?.assignedEmployees || [],
-          }),
+      availableEmployees: initialData?.availableEmployees || [],
+      instructions: initialData?.instructions || '',
     },
   })
 
@@ -85,8 +77,8 @@ export function ShiftForm({ onSubmit, onCancel, initialData }: ShiftFormProps) {
     form.setValue('shiftType', value)
     // Reset conditional fields when switching types
     if (value === 'open') {
-      form.setValue('scheduleDetails', undefined)
-      form.setValue('assignedEmployees', undefined)
+      // form.setValue('scheduleDetails', undefined)
+      // form.setValue('assignedEmployees', undefined)
     } else {
       form.setValue('availableEmployees', undefined)
       form.setValue('instructions', undefined)
@@ -351,26 +343,7 @@ export function ShiftForm({ onSubmit, onCancel, initialData }: ShiftFormProps) {
               <CardDescription>Information specific to closed shifts</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
-              <FormField
-                control={form.control}
-                name="scheduleDetails"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Schedule Details</FormLabel>
-                    <FormControl>
-                      <Textarea
-                        placeholder="Schedule details or summary..."
-                        className="min-h-[100px]"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormDescription>
-                      Provide details about the scheduled shift
-                    </FormDescription>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              {/* Schedule Details field removed - not in schema */}
 
               <div>
                 <Label className="text-sm font-medium mb-2 block">Staffing Requirements</Label>
@@ -404,19 +377,9 @@ export function ShiftForm({ onSubmit, onCancel, initialData }: ShiftFormProps) {
                             <div className="text-xs text-muted-foreground">{emp.jobTitle}</div>
                           </div>
                           <Checkbox
-                            checked={
-                              form.watch('assignedEmployees')?.includes(emp.id) || false
-                            }
-                            onCheckedChange={(checked) => {
-                              const current = form.getValues('assignedEmployees') || []
-                              if (checked) {
-                                form.setValue('assignedEmployees', [...current, emp.id])
-                              } else {
-                                form.setValue(
-                                  'assignedEmployees',
-                                  current.filter((id) => id !== emp.id)
-                                )
-                              }
+                            checked={false}
+                            onCheckedChange={() => {
+                              // Assigned employees functionality removed - not in schema
                             }}
                           />
                         </div>

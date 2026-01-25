@@ -13,7 +13,6 @@ import { Label } from '@/components/ui/label'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { MultiSelect } from '@/features/clients/components/forms/MultiSelect'
 import { ArrowLeft, Save } from 'lucide-react'
-import { StepIndicator } from '@/features/clients/components/forms/StepIndicator'
 
 // Available certifications
 const AVAILABLE_CERTIFICATIONS = [
