@@ -1,10 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Bar, BarChart } from 'recharts'
-import { HourlyTripData } from '../types'
+import { HourlyTripVolumeChartProps } from '../types'
 
-interface HourlyTripVolumeChartProps {
-  data: HourlyTripData[]
-}
+
 
 export function HourlyTripVolumeChart({ data }: HourlyTripVolumeChartProps) {
   return (
@@ -22,24 +20,24 @@ export function HourlyTripVolumeChart({ data }: HourlyTripVolumeChartProps) {
           <BarChart data={data}>
             <defs>
               <linearGradient id="colorTrips" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#09B0B6" stopOpacity={0.8}/>
-                <stop offset="95%" stopColor="#05647A" stopOpacity={0.8}/>
+                <stop offset="5%" stopColor="#09B0B6" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#05647A" stopOpacity={0.8} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
-            <XAxis 
-              dataKey="hour" 
+            <XAxis
+              dataKey="hour"
               stroke="#6b7280"
               className="dark:stroke-slate-400"
               style={{ fontSize: '12px' }}
             />
-            <YAxis 
+            <YAxis
               stroke="#6b7280"
               className="dark:stroke-slate-400"
               style={{ fontSize: '12px' }}
             />
-            <Tooltip 
-              contentStyle={{ 
+            <Tooltip
+              contentStyle={{
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',
                 borderRadius: '8px',
@@ -47,8 +45,8 @@ export function HourlyTripVolumeChart({ data }: HourlyTripVolumeChartProps) {
               }}
               labelStyle={{ color: '#05647A', fontWeight: 600 }}
             />
-            <Bar 
-              dataKey="trips" 
+            <Bar
+              dataKey="trips"
               fill="url(#colorTrips)"
               radius={[8, 8, 0, 0]}
             />

@@ -1,10 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Area, AreaChart } from 'recharts'
-import { MonthlyRevenueData } from '../types'
+import { MonthlyRevenueTrendChartProps } from '../types'
 
-interface MonthlyRevenueTrendChartProps {
-  data: MonthlyRevenueData[]
-}
+
 
 export function MonthlyRevenueTrendChart({ data }: MonthlyRevenueTrendChartProps) {
   return (
@@ -22,24 +20,24 @@ export function MonthlyRevenueTrendChart({ data }: MonthlyRevenueTrendChartProps
           <AreaChart data={data}>
             <defs>
               <linearGradient id="colorRevenue" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#09B0B6" stopOpacity={0.3}/>
-                <stop offset="95%" stopColor="#09B0B6" stopOpacity={0}/>
+                <stop offset="5%" stopColor="#09B0B6" stopOpacity={0.3} />
+                <stop offset="95%" stopColor="#09B0B6" stopOpacity={0} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
-            <XAxis 
-              dataKey="month" 
+            <XAxis
+              dataKey="month"
               stroke="#6b7280"
               className="dark:stroke-slate-400"
               style={{ fontSize: '12px' }}
             />
-            <YAxis 
+            <YAxis
               stroke="#6b7280"
               className="dark:stroke-slate-400"
               style={{ fontSize: '12px' }}
             />
-            <Tooltip 
-              contentStyle={{ 
+            <Tooltip
+              contentStyle={{
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',
                 borderRadius: '8px',
@@ -48,13 +46,13 @@ export function MonthlyRevenueTrendChart({ data }: MonthlyRevenueTrendChartProps
               labelStyle={{ color: '#05647A', fontWeight: 600 }}
               formatter={(value: number) => [`$${value.toLocaleString()}`, 'Revenue']}
             />
-            <Area 
-              type="monotone" 
-              dataKey="revenue" 
-              stroke="#09B0B6" 
+            <Area
+              type="monotone"
+              dataKey="revenue"
+              stroke="#09B0B6"
               strokeWidth={3}
-              fillOpacity={1} 
-              fill="url(#colorRevenue)" 
+              fillOpacity={1}
+              fill="url(#colorRevenue)"
             />
           </AreaChart>
         </ResponsiveContainer>

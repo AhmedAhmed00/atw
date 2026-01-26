@@ -7,6 +7,7 @@ import { calculateServiceStats } from './data/calculateStats'
 import { PageHeader } from '@/components/shared/page-header'
 import { Briefcase, Loader2 } from 'lucide-react'
 import { AddServiceFormData } from './schemas/service-schema'
+import { logger } from '@/utils/logger'
 
 // Lazy load the dialog form to reduce initial bundle size
 const AddServiceDialog = lazy(() => import('./components/AddServiceDialog').then(m => ({ default: m.AddServiceDialog })))
@@ -15,7 +16,7 @@ export function ServicesPage() {
   const stats = calculateServiceStats(mockServices)
 
   const handleAddService = (data: AddServiceFormData) => {
-    console.log('New service data:', data)
+    logger.info('New service data', data)
     // TODO: Add service to the database/state
     // For now, we'll just log the data
   }

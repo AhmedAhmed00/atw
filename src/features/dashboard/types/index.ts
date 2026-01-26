@@ -109,3 +109,29 @@ export interface SystemAlert {
   resolved: boolean
 }
 
+export interface FleetOverviewCardsProps {
+  stats: FleetOverviewStats
+}
+
+export interface HourlyTripVolumeChartProps {
+  data: HourlyTripData[]
+}
+
+export interface WeeklyPerformanceChartProps {
+  data: WeeklyPerformanceData[]
+}
+
+export interface MonthlyRevenueTrendChartProps {
+  data: MonthlyRevenueData[]
+}
+
+
+export interface LiveFleetTrackingProps {
+  vehicles: FleetVehicle[]
+}
+
+
+// Vehicle list item component
+export interface VehicleListItemProps {
+  vehicle: FleetVehicle
+}

@@ -8,6 +8,7 @@ import { ArrowLeft } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { AddPatientForm } from '../components/forms/AddPatientForm'
 import { AddPatientFormData } from '../schemas/addPatientSchema'
+import { logger } from '@/utils/logger'
 
 export function AddPatientPage() {
   const navigate = useNavigate()
@@ -19,12 +20,12 @@ export function AddPatientPage() {
   const handleSubmit = async (data: AddPatientFormData) => {
     try {
       // TODO: Implement API call to add patient
-      console.log('Adding new patient:', data)
+      logger.info('Adding new patient', data)
       // Example: await api.addPatient(data)
       
       // Don't navigate automatically - let the success page handle it
     } catch (error) {
-      console.error('Error adding patient:', error)
+      logger.error('Error adding patient', error)
       // Error handling - you might want to show an error notification here
       throw error // Re-throw to let the form handle it
     }

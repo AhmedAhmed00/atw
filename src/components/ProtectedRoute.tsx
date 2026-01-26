@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import { useAppSelector } from '@/store/hooks'
+import { useAppSelector } from '@/core/store/hooks'
 import { Loader2 } from 'lucide-react'
 
 interface ProtectedRouteProps {

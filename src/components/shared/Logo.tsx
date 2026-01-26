@@ -3,7 +3,7 @@
  * Reusable "All The Way" logo component for the application
  */
 
-import { useTheme } from '@/components/theme-provider'
+import { useTheme } from '@/core/providers/theme-provider'
 import { Ambulance } from 'lucide-react'
 import { cn } from '@/lib/utils'
 

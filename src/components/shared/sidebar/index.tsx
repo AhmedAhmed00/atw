@@ -6,8 +6,8 @@ import { LogOut } from "lucide-react"
 import { SidebarLogo } from "./SidebarLogo"
 import { SidebarNavGroup } from "./SidebarNavGroup"
 import { navigationSections } from "./navigationData"
-import { useAppDispatch } from '@/store/hooks'
-import { logout } from '@/store/slices/authSlice'
+import { useAppDispatch } from '@/core/store/hooks'
+import { logout } from '@/features/authentication/slices/authSlice'
 
 export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
   const dispatch = useAppDispatch()

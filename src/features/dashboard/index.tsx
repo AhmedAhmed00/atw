@@ -1,12 +1,4 @@
-import { 
-  DashboardStats, 
-  UpcomingAppointments, 
-  ConfirmedAppointments,
-  QuickActions,
-  RevenueChart,
-  AppointmentsChart,
-  ServiceDistributionChart,
-  PatientGrowthChart,
+import {
   FleetOverviewCards,
   HourlyTripVolumeChart,
   WeeklyPerformanceChart,
@@ -17,28 +9,36 @@ import {
   VehicleHealth,
   SystemAlerts
 } from './components'
-import { 
-  dashboardStats, 
-  upcomingAppointments, 
-  confirmedAppointments,
-  fleetOverviewStats,
-  hourlyTripData,
-  weeklyPerformanceData,
-  monthlyRevenueData,
-  topPerformers,
-  fleetVehicles,
-  trips,
-  vehicleHealth,
-  systemAlerts
-} from './data/mockData'
+import { useAppSelector } from '@/core/store/hooks'
+import {
+  selectFleetOverviewStats,
+  selectHourlyTripData,
+  selectWeeklyPerformanceData,
+  selectMonthlyRevenueData,
+  selectTopPerformers,
+  selectFleetVehicles,
+  selectTrips,
+  selectVehicleHealth,
+  selectSystemAlerts,
+} from './slices/selectore'
 
 export function DashboardPage() {
+  const fleetOverviewStats = useAppSelector(selectFleetOverviewStats)
+  const hourlyTripData = useAppSelector(selectHourlyTripData)
+  const weeklyPerformanceData = useAppSelector(selectWeeklyPerformanceData)
+  const monthlyRevenueData = useAppSelector(selectMonthlyRevenueData)
+  const topPerformers = useAppSelector(selectTopPerformers)
+  const fleetVehicles = useAppSelector(selectFleetVehicles)
+  const trips = useAppSelector(selectTrips)
+  const vehicleHealth = useAppSelector(selectVehicleHealth)
+  const systemAlerts = useAppSelector(selectSystemAlerts)
+
   return (
     <div className="space-y-4 md:space-y-6">
       {/* Header */}
       <div>
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent">
-        Real-time Operations Dashboard - All Systems Online
+          Real-time Operations Dashboard - All Systems Online
         </h1>
         <p className="text-muted-foreground mt-1 md:mt-2 text-sm md:text-base">
           Real-time monitoring and analytics for your fleet operations.

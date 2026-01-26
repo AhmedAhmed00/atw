@@ -1,6 +1,6 @@
-import { FleetOverviewStats } from '../types'
+import { FleetOverviewCardsProps } from '../types'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { 
+import {
   Users,
   Building2,
   MapPin,
@@ -9,9 +9,7 @@ import {
   Clock,
 } from 'lucide-react'
 
-interface FleetOverviewCardsProps {
-  stats: FleetOverviewStats
-}
+
 
 export function FleetOverviewCards({ stats }: FleetOverviewCardsProps) {
   const cards: StatsCardProps[] = [
@@ -54,9 +52,9 @@ export function FleetOverviewCards({ stats }: FleetOverviewCardsProps) {
   ]
 
   return (
-    <StatsCardGrid 
-      cards={cards} 
-      columns={{ default: 1, sm: 2, lg: 3 }} 
+    <StatsCardGrid
+      cards={cards}
+      columns={{ default: 1, sm: 2, lg: 3 }}
     />
   )
 }

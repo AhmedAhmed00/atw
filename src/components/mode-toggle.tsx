@@ -1,5 +1,5 @@
 import { Moon, Sun, Sparkles } from "lucide-react"
-import { useTheme } from "@/components/theme-provider"
+import { useTheme } from "@/core/providers/theme-provider"
 
 export function ModeToggle() {
   const { theme, setTheme } = useTheme()

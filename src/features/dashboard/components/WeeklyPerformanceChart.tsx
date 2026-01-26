@@ -1,10 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Line, LineChart, Legend } from 'recharts'
-import { WeeklyPerformanceData } from '../types'
-
-interface WeeklyPerformanceChartProps {
-  data: WeeklyPerformanceData[]
-}
+import { WeeklyPerformanceChartProps } from '../types'
 
 export function WeeklyPerformanceChart({ data }: WeeklyPerformanceChartProps) {
   return (
@@ -21,27 +17,27 @@ export function WeeklyPerformanceChart({ data }: WeeklyPerformanceChartProps) {
         <ResponsiveContainer width="100%" height={300} minHeight={250}>
           <LineChart data={data}>
             <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
-            <XAxis 
-              dataKey="day" 
+            <XAxis
+              dataKey="day"
               stroke="#6b7280"
               className="dark:stroke-slate-400"
               style={{ fontSize: '12px' }}
             />
-            <YAxis 
+            <YAxis
               yAxisId="left"
               stroke="#6b7280"
               className="dark:stroke-slate-400"
               style={{ fontSize: '12px' }}
             />
-            <YAxis 
+            <YAxis
               yAxisId="right"
               orientation="right"
               stroke="#6b7280"
               className="dark:stroke-slate-400"
               style={{ fontSize: '12px' }}
             />
-            <Tooltip 
-              contentStyle={{ 
+            <Tooltip
+              contentStyle={{
                 backgroundColor: 'white',
                 border: '1px solid #e5e7eb',
                 borderRadius: '8px',
@@ -50,20 +46,20 @@ export function WeeklyPerformanceChart({ data }: WeeklyPerformanceChartProps) {
               labelStyle={{ color: '#05647A', fontWeight: 600 }}
             />
             <Legend />
-            <Line 
+            <Line
               yAxisId="left"
-              type="monotone" 
-              dataKey="trips" 
-              stroke="#09B0B6" 
+              type="monotone"
+              dataKey="trips"
+              stroke="#09B0B6"
               strokeWidth={3}
               name="Trips"
               dot={{ r: 5 }}
             />
-            <Line 
+            <Line
               yAxisId="right"
-              type="monotone" 
-              dataKey="revenue" 
-              stroke="#05647A" 
+              type="monotone"
+              dataKey="revenue"
+              stroke="#05647A"
               strokeWidth={3}
               name="Revenue ($)"
               dot={{ r: 5 }}

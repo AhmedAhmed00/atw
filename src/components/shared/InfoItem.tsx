@@ -20,7 +20,7 @@ export function InfoItem({ icon: Icon, label, value, className }: InfoItemProps)
         <Icon className="w-3.5 h-3.5" />
         <span>{label}</span>
       </div>
-      <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">{value}</p>
+      <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">{value}</div>
     </div>
   )
 }
