@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { MoreVertical } from 'lucide-react'
-import { StatusBadge } from '@/components/shared/StatusBadge'
+import { StatusBadge } from '@/components/ui/status-bage'
 import { Link } from 'react-router-dom'
 import type { StatusConfig } from '@/utils/statusConfigs'
 

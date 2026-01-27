@@ -3,9 +3,9 @@
  * Displays patient trips with stats cards and table
  */
 
-import { 
-  ClipboardList, 
-  CheckCircle2, 
+import {
+  ClipboardList,
+  CheckCircle2,
   Clock,
   MapPin,
   Stethoscope,
@@ -13,11 +13,11 @@ import {
   Truck,
   DollarSign
 } from 'lucide-react'
-import { SectionCard } from '@/components/shared/SectionCard'
+import { SectionCard } from '@/components/ui/section-card'
 import { Badge } from '@/components/ui/badge'
 import { DataTable } from '@/components/shared/table'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { StatusBadge } from '@/components/shared/StatusBadge'
+import { StatusBadge } from '@/components/ui/status-bage'
 import { TRIP_STATUS_CONFIG } from '@/utils/statusConfigs'
 import { ColumnDef } from '@tanstack/react-table'
 import { SortableHeader } from '@/components/shared/table'
@@ -72,11 +72,11 @@ function generatePatientTrips(patientId: string, patientName: string): {
     const dateTime = new Date(date.setHours(hours, minutes, 0))
 
     const statuses: PatientTrip['status'][] = ['Completed', 'Scheduled', 'In Progress', 'Cancelled']
-    const status = i < completed 
-      ? 'Completed' 
-      : i < completed + scheduled 
-      ? 'Scheduled' 
-      : statuses[Math.floor(Math.random() * statuses.length)]
+    const status = i < completed
+      ? 'Completed'
+      : i < completed + scheduled
+        ? 'Scheduled'
+        : statuses[Math.floor(Math.random() * statuses.length)]
 
     return {
       id: `trip-${patientId}-${i + 1}`,
@@ -121,16 +121,16 @@ const tripColumns: ColumnDef<PatientTrip>[] = [
       return (
         <div className="space-y-0.5">
           <div className="text-sm font-medium">
-            {dateTime.toLocaleDateString('en-US', { 
-              year: 'numeric', 
-              month: 'short', 
-              day: 'numeric' 
+            {dateTime.toLocaleDateString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric'
             })}
           </div>
           <div className="text-xs text-muted-foreground">
-            {dateTime.toLocaleTimeString('en-US', { 
-              hour: '2-digit', 
-              minute: '2-digit' 
+            {dateTime.toLocaleTimeString('en-US', {
+              hour: '2-digit',
+              minute: '2-digit'
             })}
           </div>
         </div>
@@ -201,10 +201,10 @@ const tripColumns: ColumnDef<PatientTrip>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => <SortableHeader column={column}>Status</SortableHeader>,
-          cell: ({ row }) => {
-            const status = row.getValue('status') as string
-            return <StatusBadge status={status} config={TRIP_STATUS_CONFIG} />
-          },
+    cell: ({ row }) => {
+      const status = row.getValue('status') as string
+      return <StatusBadge status={status} config={TRIP_STATUS_CONFIG} />
+    },
   },
 ]
 
@@ -235,9 +235,9 @@ export function PatientTrips({ patientId, patientName }: PatientTripsProps) {
   return (
     <div className="space-y-6">
       {/* Stats Cards */}
-      <StatsCardGrid 
-        cards={summaryCards} 
-        columns={{ default: 1, sm: 2, lg: 3 }} 
+      <StatsCardGrid
+        cards={summaryCards}
+        columns={{ default: 1, sm: 2, lg: 3 }}
       />
 
       {/* Trips Table */}

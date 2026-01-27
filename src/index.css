@@ -2,6 +2,7 @@
 
 
 @custom-variant dark (&:is(.dark *));
+
 :root {
   --background: 255 255 255;
   --foreground: oklch(0.2500 0.0150 220);
@@ -22,11 +23,14 @@
   --border: oklch(0.8900 0.0150 205);
   --input: oklch(0.9500 0.0100 205);
   --ring: 229 36 34;
-  
+
   /* Input Variables - Standardized */
-  --input-height: 2.5rem; /* 40px / h-10 - Standard height for all inputs */
-  --input-padding-x: 0.75rem; /* 12px / px-3 */
-  --input-padding-y: 1.35rem; /* 8px / py-2 */
+  --input-height: 2.5rem;
+  /* 40px / h-10 - Standard height for all inputs */
+  --input-padding-x: 0.75rem;
+  /* 12px / px-3 */
+  --input-padding-y: 1.35rem;
+  /* 8px / py-2 */
   --input-border-width: 1px;
   --input-border-color: hsl(var(--input));
   --input-border-radius: calc(var(--radius) - 1px);
@@ -35,7 +39,8 @@
   --input-focus-ring-width: 3px;
   --input-focus-ring-color: hsl(var(--ring) / 0.5);
   --input-disabled-opacity: 0.5;
-  --input-text-size: 0.875rem; /* text-sm */
+  --input-text-size: 0.875rem;
+  /* text-sm */
   --input-placeholder-color: hsl(var(--muted-foreground));
   --chart-1: 229 36 34;
   --chart-2: 151 31 30;
@@ -50,37 +55,59 @@
   --sidebar-accent-foreground: 255 255 255;
   --sidebar-border: 186 245 247;
   --sidebar-ring: 9 176 182;
-  
+
   /* Brand Colors - Base (Healthcare Blue/Cyan Palette) */
-  --brand-primary: 9 176 182;      /* #09B0B6 - Primary cyan/teal */
-  --brand-secondary: 5 100 122;    /* #05647A - Dark teal */
+  --brand-primary: 9 176 182;
+  /* #09B0B6 - Primary cyan/teal */
+  --brand-secondary: 5 100 122;
+  /* #05647A - Dark teal */
   --brand-gradient-from: #09B0B6;
   --brand-gradient-to: #05647A;
-  
+
   /* Brand Color Scale - Primary (Cyan/Teal) */
-  --brand-50: 234 252 253;    /* Very light cyan - #AADCF7 inspired */
-  --brand-100: 218 250 251;   /* Light cyan - #86E2DD inspired */
-  --brand-200: 186 245 247;   /* Lighter cyan - #3DCCD0 inspired */
-  --brand-300: 154 240 243;   /* Light-medium cyan */
-  --brand-400: 61 204 208;    /* Medium-light cyan - #3DCCD0 */
-  --brand-500: 9 176 182;     /* Base/Primary cyan - #09B0B6 */
-  --brand-600: 7 141 146;     /* Medium-dark cyan */
-  --brand-700: 5 100 122;     /* Dark teal - #05647A */
-  --brand-800: 4 80 98;       /* Darker teal */
-  --brand-900: 2 50 61;       /* Very dark teal */
-  
+  --brand-50: 234 252 253;
+  /* Very light cyan - #AADCF7 inspired */
+  --brand-100: 218 250 251;
+  /* Light cyan - #86E2DD inspired */
+  --brand-200: 186 245 247;
+  /* Lighter cyan - #3DCCD0 inspired */
+  --brand-300: 154 240 243;
+  /* Light-medium cyan */
+  --brand-400: 61 204 208;
+  /* Medium-light cyan - #3DCCD0 */
+  --brand-500: 9 176 182;
+  /* Base/Primary cyan - #09B0B6 */
+  --brand-600: 7 141 146;
+  /* Medium-dark cyan */
+  --brand-700: 5 100 122;
+  /* Dark teal - #05647A */
+  --brand-800: 4 80 98;
+  /* Darker teal */
+  --brand-900: 2 50 61;
+  /* Very dark teal */
+
   /* Brand Color Scale - Secondary (Blue) */
-  --brand-secondary-50: 234 247 255;    /* Very light blue - #AADCF7 */
-  --brand-secondary-100: 218 240 255;   /* Light blue - #AADCF7 */
-  --brand-secondary-200: 186 230 255;   /* Lighter blue - #63A7D8 inspired */
-  --brand-secondary-300: 154 220 255;   /* Light-medium blue */
-  --brand-secondary-400: 99 167 216;  /* Medium-light blue - #63A7D8 */
-  --brand-secondary-500: 38 107 172;     /* Base/Secondary blue - #266BAC */
-  --brand-secondary-600: 16 52 84;     /* Medium-dark blue - #103454 */
-  --brand-secondary-700: 5 100 122;      /* Dark teal - #05647A */
-  --brand-secondary-800: 4 80 98;      /* Darker teal */
-  --brand-secondary-900: 2 50 61;        /* Very dark teal */
-  
+  --brand-secondary-50: 234 247 255;
+  /* Very light blue - #AADCF7 */
+  --brand-secondary-100: 218 240 255;
+  /* Light blue - #AADCF7 */
+  --brand-secondary-200: 186 230 255;
+  /* Lighter blue - #63A7D8 inspired */
+  --brand-secondary-300: 154 220 255;
+  /* Light-medium blue */
+  --brand-secondary-400: 99 167 216;
+  /* Medium-light blue - #63A7D8 */
+  --brand-secondary-500: 38 107 172;
+  /* Base/Secondary blue - #266BAC */
+  --brand-secondary-600: 16 52 84;
+  /* Medium-dark blue - #103454 */
+  --brand-secondary-700: 5 100 122;
+  /* Dark teal - #05647A */
+  --brand-secondary-800: 4 80 98;
+  /* Darker teal */
+  --brand-secondary-900: 2 50 61;
+  /* Very dark teal */
+
   /* Status Colors - Light Mode */
   --status-success: 16 185 129;
   --status-success-dark: 5 150 105;
@@ -90,7 +117,7 @@
   --status-danger-dark: 220 38 38;
   --status-info: 14 165 233;
   --status-info-dark: 2 132 199;
-  
+
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   --font-serif: serif;
   --font-mono: 'Courier New', monospace;
@@ -133,7 +160,7 @@
   --border: oklch(0.3200 0.0200 240);
   --input: oklch(0.3200 0.0200 240);
   --ring: 9 176 182;
-  
+
   /* Input Variables - Standardized (Dark Mode) */
   --input-border-color: hsl(var(--input));
   --input-focus-border-color: hsl(var(--ring));
@@ -229,16 +256,16 @@
     @apply border-border outline-ring/50;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
-  
+
   :root input:focus,
   :root textarea:focus,
   :root select:focus {
     border-color: rgba(9, 176, 182, 0.5);
-    box-shadow: 
+    box-shadow:
       0 0 0 3px rgba(9, 176, 182, 0.1),
       0 1px 2px rgba(5, 100, 122, 0.05);
   }
-  
+
 
 
 
@@ -267,6 +294,7 @@
   text-align: left !important;
   transition: all 0.15s ease-in-out;
 }
+
 .flag {
   right: 27px;
 }
@@ -274,9 +302,11 @@
 .react-tel-input {
   direction: ltr;
 }
+
 .react-tel-input .selected-flag {
   width: 60px !important;
 }
+
 .react-tel-input .form-control:focus {
   outline: none;
   box-shadow: 0 0 0 2px hsl(var(--ring));
@@ -370,8 +400,10 @@
 
 /* Hide scrollbar for Firefox */
 * {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
 }
 
 /* Gradient for active sidebar menu items */
@@ -444,24 +476,30 @@
 
 /* Mode Toggle Animations */
 @keyframes twinkle {
-  0%, 100% { 
-    opacity: 0.3; 
-    transform: scale(1); 
+
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
   }
-  50% { 
-    opacity: 1; 
-    transform: scale(1.5); 
+
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
   }
 }
 
 @keyframes pulse {
-  0%, 100% { 
-    opacity: 0.6; 
-    transform: translateY(-20px) scale(1); 
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: translateY(-20px) scale(1);
   }
-  50% { 
-    opacity: 0.2; 
-    transform: translateY(-24px) scale(0.5); 
+
+  50% {
+    opacity: 0.2;
+    transform: translateY(-24px) scale(0.5);
   }
 }
 
@@ -502,7 +540,7 @@
   background-color: var(--accent);
 }
 
-.sidebar-icon{ 
+.sidebar-icon {
   width: 22px;
   height: 22px;
   padding: 0px;
@@ -532,6 +570,3 @@ select:focus-visible,
   border-color: var(--input-focus-border-color) !important;
   box-shadow: 0 0 0 var(--input-focus-ring-width) var(--input-focus-ring-color) !important;
 }
-
-
-

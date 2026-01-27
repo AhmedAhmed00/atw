@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom'
 import { PageHeader } from '@/components/shared/page-header'
 import { UserCheck, Upload, Download, Plus } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { DataTable } from '@/components/shared/table'
 import {
   PatientStatsCards,
@@ -23,6 +22,7 @@ import {
   topActivePatients,
   patients,
 } from '../data/mockPatientsData'
+import { TableWrapper } from '@/components/shared/table/TableWrapper'
 
 export function PatientsPage() {
   const navigate = useNavigate()
@@ -89,19 +89,9 @@ export function PatientsPage() {
       <TopActivePatientsChart data={topActivePatients} />
 
       {/* Patients Table */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-lg md:text-xl text-[#05647A] dark:text-[#09B0B6]">
-            Patients
-          </CardTitle>
-          <CardDescription className="text-xs md:text-sm">
-            Complete list of all individual patients and their details
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <DataTable columns={patientColumns} data={patients} />
-        </CardContent>
-      </Card>
+      <TableWrapper title='Patients' description='Manage your patients' >
+        <DataTable columns={patientColumns} data={patients} />
+      </TableWrapper>
     </div>
   )
 }

@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, Mail, ArrowLeft } from 'lucide-react'
-import { Logo } from '@/components/shared/Logo'
+import { Logo } from '@/components/ui/logo'
 import { Link } from 'react-router-dom'
 
 export default function ForgotPasswordPage() {
@@ -25,15 +25,15 @@ export default function ForgotPasswordPage() {
     try {
       // Simulate API call to send OTP
       await new Promise(resolve => setTimeout(resolve, 1000))
-      
+
       // Check if email exists in static users
       const STATIC_USERS = [
         { email: 'admin@All The way.com' },
         { email: 'doctor@All The way.com' },
       ]
-      
+
       const userExists = STATIC_USERS.some(u => u.email === email)
-      
+
       if (!userExists) {
         setError('No account found with this email address')
         setIsLoading(false)
@@ -42,17 +42,17 @@ export default function ForgotPasswordPage() {
 
       // Store email in sessionStorage for OTP verification
       sessionStorage.setItem('reset_email', email)
-      
+
       // Generate and store OTP (in real app, this would be sent via email)
       const otp = Math.floor(100000 + Math.random() * 900000).toString()
       sessionStorage.setItem('reset_otp', otp)
       sessionStorage.setItem('otp_expires', (Date.now() + 10 * 60 * 1000).toString()) // 10 minutes
-      
+
       // For demo purposes - log OTP to console
       console.log('🔐 Demo OTP (for testing only):', otp)
-      
+
       setSuccess(true)
-      
+
       // Navigate to verify OTP page after a brief delay
       setTimeout(() => {
         navigate('/verify-otp')
@@ -76,7 +76,7 @@ export default function ForgotPasswordPage() {
         <CardHeader className="space-y-4 text-center pb-6">
           {/* Logo */}
           <Logo variant="login" size="lg" className="justify-center" />
-          
+
           <div>
             <CardTitle className="text-3xl font-bold bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent">
               Forgot Password

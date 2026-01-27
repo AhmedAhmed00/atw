@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Alert, AlertDescription } from '@/components/ui/alert'
 import { Loader2, ArrowLeft, ShieldCheck } from 'lucide-react'
-import { Logo } from '@/components/shared/Logo'
+import { Logo } from '@/components/ui/logo'
 import { Link } from 'react-router-dom'
 
 export default function VerifyOTPPage() {
@@ -58,7 +58,7 @@ export default function VerifyOTPPage() {
 
   const handleChange = (index: number, value: string) => {
     if (value.length > 1) return // Only allow single digit
-    
+
     const newOtp = [...otp]
     newOtp[index] = value.replace(/\D/g, '') // Only allow digits
     setOtp(newOtp)
@@ -80,14 +80,14 @@ export default function VerifyOTPPage() {
     e.preventDefault()
     const pastedData = e.clipboardData.getData('text').replace(/\D/g, '').slice(0, 6)
     const newOtp = [...otp]
-    
+
     for (let i = 0; i < 6; i++) {
       newOtp[i] = pastedData[i] || ''
     }
-    
+
     setOtp(newOtp)
     setError('')
-    
+
     // Focus the last filled input or the last input
     const lastFilledIndex = Math.min(pastedData.length - 1, 5)
     inputRefs.current[lastFilledIndex]?.focus()
@@ -96,9 +96,9 @@ export default function VerifyOTPPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setError('')
-    
+
     const otpString = otp.join('')
-    
+
     if (otpString.length !== 6) {
       setError('Please enter the complete 6-digit OTP')
       return
@@ -138,10 +138,10 @@ export default function VerifyOTPPage() {
       // In a real app, you'd navigate to a reset password page
       sessionStorage.removeItem('reset_otp')
       sessionStorage.removeItem('otp_expires')
-      
+
       // Store verification success
       sessionStorage.setItem('otp_verified', 'true')
-      
+
       // Navigate to login with success message
       navigate('/login', { state: { message: 'OTP verified successfully! You can now reset your password.' } })
     } catch (err) {
@@ -169,10 +169,10 @@ export default function VerifyOTPPage() {
       const newOtp = Math.floor(100000 + Math.random() * 900000).toString()
       sessionStorage.setItem('reset_otp', newOtp)
       sessionStorage.setItem('otp_expires', (Date.now() + 10 * 60 * 1000).toString())
-      
+
       // For demo purposes - log OTP to console
       console.log('🔐 Demo OTP (for testing only):', newOtp)
-      
+
       setTimeLeft(600)
       setOtp(['', '', '', '', '', ''])
       inputRefs.current[0]?.focus()
@@ -195,7 +195,7 @@ export default function VerifyOTPPage() {
         <CardHeader className="space-y-4 text-center pb-6">
           {/* Logo */}
           <Logo variant="login" size="lg" className="justify-center" />
-          
+
           <div>
             <CardTitle className="text-3xl font-bold bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent">
               Verify OTP

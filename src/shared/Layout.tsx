@@ -13,7 +13,7 @@ import {
 } from './ui/breadcrumb'
 import { ModeToggle } from './mode-toggle'
 import { NotificationPopover } from './shared/notifications'
-import { Logo } from './shared/Logo'
+import { Logo } from './ui/logo'
 
 interface LayoutProps {
   children: ReactNode

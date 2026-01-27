@@ -3,13 +3,13 @@
  * Comprehensive overview dashboard for institution information
  */
 
-import { 
-  Building2, 
-  Phone, 
-  Mail, 
-  Calendar, 
-  Hash, 
-  MapPin, 
+import {
+  Building2,
+  Phone,
+  Mail,
+  Calendar,
+  Hash,
+  MapPin,
   Globe,
   FileText,
   ClipboardList,
@@ -22,9 +22,9 @@ import {
 } from 'lucide-react'
 import { Badge } from '@/components/ui/badge'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { InfoItem } from '@/components/shared/InfoItem'
-import { SectionCard } from '@/components/shared/SectionCard'
-import { ComplianceItem } from '@/components/shared/ComplianceItem'
+import { InfoItem } from '@/components/ui/InfoItem'
+import { SectionCard } from '@/components/ui/section-card'
+import { ComplianceItem } from '@/components/ui/compliance-item'
 import { cn } from '@/lib/utils'
 
 interface InstitutionOverviewProps {

@@ -3,7 +3,7 @@ import { Patient } from '../data/mockPatientsData'
 import { SortableHeader } from '@/components/shared/table'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
-import { StatusBadge } from '@/components/shared/StatusBadge'
+import { StatusBadge } from '@/components/ui/status-bage'
 import { PATIENT_STATUS_CONFIG } from '@/utils/statusConfigs'
 import { Link } from 'react-router'
 import { Eye, MoreHorizontal } from 'lucide-react'
@@ -81,10 +81,10 @@ export const patientColumns: ColumnDef<Patient>[] = [
   {
     accessorKey: 'status',
     header: ({ column }) => <SortableHeader column={column}>Status</SortableHeader>,
-          cell: ({ row }) => {
-            const status = row.getValue('status') as string
-            return <StatusBadge status={status} config={PATIENT_STATUS_CONFIG} />
-          },
+    cell: ({ row }) => {
+      const status = row.getValue('status') as string
+      return <StatusBadge status={status} config={PATIENT_STATUS_CONFIG} />
+    },
   },
   {
     id: 'actions',

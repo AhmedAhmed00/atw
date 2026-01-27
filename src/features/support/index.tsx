@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/popover'
 import { Calendar } from '@/components/ui/calendar'
 import { lazy, Suspense } from 'react'
-import { DataTable } from '@/components/shared/table' 
+import { DataTable } from '@/components/shared/table'
 import { HeadsetIcon, TicketPlus, CalendarIcon, X, Loader2 } from 'lucide-react'
 import { format } from 'date-fns'
 import { supportTicketColumns, SupportTicketDetails } from './components'
@@ -47,14 +47,14 @@ function SupportTicketsPage() {
     return tickets.filter((ticket) => {
       // Status filter
       const matchesStatus = statusFilter === 'all' || ticket.status === statusFilter
-      
+
       // Date from filter
       const ticketDate = new Date(ticket.createdAt)
       const matchesDateFrom = !dateFrom || ticketDate >= dateFrom
-      
+
       // Date to filter (include the entire end day)
       const matchesDateTo = !dateTo || ticketDate <= new Date(dateTo.getTime() + 24 * 60 * 60 * 1000 - 1)
-      
+
       return matchesStatus && matchesDateFrom && matchesDateTo
     })
   }, [tickets, statusFilter, dateFrom, dateTo])
@@ -194,7 +194,7 @@ function SupportTicketsPage() {
 
             {/* Filters */}
             <div className="flex flex-wrap items-end gap-4 p-4 bg-slate-50 dark:bg-slate-800/50 rounded-lg">
-              
+
 
               {/* Status Filter */}
               <div className="space-y-1.5">

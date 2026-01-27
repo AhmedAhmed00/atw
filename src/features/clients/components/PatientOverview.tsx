@@ -3,15 +3,15 @@
  * Comprehensive overview dashboard for patient information
  */
 
-import { 
-  User, 
-  Phone, 
-  Mail, 
-  Calendar, 
-  Hash, 
-  MapPin, 
-  Activity, 
-  Ruler, 
+import {
+  User,
+  Phone,
+  Mail,
+  Calendar,
+  Hash,
+  MapPin,
+  Activity,
+  Ruler,
   AlertCircle,
   CreditCard,
   FileText,
@@ -26,9 +26,9 @@ import {
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { InfoItem } from '@/components/shared/InfoItem'
-import { SectionCard } from '@/components/shared/SectionCard'
-import { ComplianceItem } from '@/components/shared/ComplianceItem'
+import { InfoItem } from '@/components/ui/InfoItem'
+import { SectionCard } from '@/components/ui/section-card'
+import { ComplianceItem } from '@/components/ui/compliance-item'
 import { cn } from '@/lib/utils'
 
 interface PatientOverviewProps {
@@ -198,9 +198,9 @@ export function PatientOverview({ patient }: PatientOverviewProps) {
           <ClipboardList className="w-5 h-5" />
           Patient Summary
         </h2>
-        <StatsCardGrid 
-          cards={summaryCards} 
-          columns={{ default: 1, sm: 2, lg: 3 }} 
+        <StatsCardGrid
+          cards={summaryCards}
+          columns={{ default: 1, sm: 2, lg: 3 }}
         />
       </div>
 
@@ -225,9 +225,9 @@ export function PatientOverview({ patient }: PatientOverviewProps) {
               <InfoItem icon={Ruler} label="Height" value={details.medical.height} />
               <InfoItem icon={FileText} label="Baseline" value={details.medical.baseline} />
             </div>
-            
+
             <Separator />
-            
+
             <div className="space-y-2">
               <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Clinical Flags</p>
               <div className="flex flex-wrap gap-2">
@@ -261,49 +261,49 @@ export function PatientOverview({ patient }: PatientOverviewProps) {
 
         {/* Insurance Information */}
         <SectionCard title="Insurance Information" icon={Shield}>
-            <div className="grid grid-cols-1 gap-4">
-              <InfoItem icon={Shield} label="Payer Name" value={details.insurance.payerName} />
-              <InfoItem icon={Hash} label="Member ID" value={details.insurance.memberId} />
-              <InfoItem icon={CreditCard} label="Plan" value={details.insurance.plan} />
-              <InfoItem icon={Hash} label="Authorization Number" value={details.insurance.authorizationNumber} />
-              <InfoItem icon={Calendar} label="Authorization Valid Date" value={new Date(details.insurance.authorizationValidDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} />
-            </div>
+          <div className="grid grid-cols-1 gap-4">
+            <InfoItem icon={Shield} label="Payer Name" value={details.insurance.payerName} />
+            <InfoItem icon={Hash} label="Member ID" value={details.insurance.memberId} />
+            <InfoItem icon={CreditCard} label="Plan" value={details.insurance.plan} />
+            <InfoItem icon={Hash} label="Authorization Number" value={details.insurance.authorizationNumber} />
+            <InfoItem icon={Calendar} label="Authorization Valid Date" value={new Date(details.insurance.authorizationValidDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} />
+          </div>
         </SectionCard>
 
         {/* Contact & Address */}
         <SectionCard title="Contact & Address" icon={Home}>
-            <InfoItem icon={MapPin} label="Address" value={details.contact.address} />
-            
-            <Separator />
-            
-            <div className="space-y-2">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Emergency Contact</p>
-              <div className="p-3 rounded-lg border bg-muted/50">
-                <p className="font-semibold text-sm">{details.contact.emergencyContact.name}</p>
-                <p className="text-xs text-muted-foreground mt-1">{details.contact.emergencyContact.relationship}</p>
-                <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
-                  <Phone className="w-3 h-3" />
-                  {details.contact.emergencyContact.phone}
-                </p>
-              </div>
+          <InfoItem icon={MapPin} label="Address" value={details.contact.address} />
+
+          <Separator />
+
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Emergency Contact</p>
+            <div className="p-3 rounded-lg border bg-muted/50">
+              <p className="font-semibold text-sm">{details.contact.emergencyContact.name}</p>
+              <p className="text-xs text-muted-foreground mt-1">{details.contact.emergencyContact.relationship}</p>
+              <p className="text-xs text-muted-foreground flex items-center gap-1 mt-1">
+                <Phone className="w-3 h-3" />
+                {details.contact.emergencyContact.phone}
+              </p>
             </div>
+          </div>
 
-            <Separator />
+          <Separator />
 
+          <div className="space-y-2">
+            <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Care Team</p>
             <div className="space-y-2">
-              <p className="text-xs font-medium text-muted-foreground uppercase tracking-wide">Care Team</p>
-              <div className="space-y-2">
-                {details.contact.careTeam.map((member, idx) => (
-                  <div key={idx} className="flex items-center justify-between p-2 rounded-lg border bg-card">
-                    <div>
-                      <p className="text-sm font-medium">{member.name}</p>
-                      <p className="text-xs text-muted-foreground">{member.role}</p>
-                    </div>
-                    <Users className="w-4 h-4 text-muted-foreground" />
+              {details.contact.careTeam.map((member, idx) => (
+                <div key={idx} className="flex items-center justify-between p-2 rounded-lg border bg-card">
+                  <div>
+                    <p className="text-sm font-medium">{member.name}</p>
+                    <p className="text-xs text-muted-foreground">{member.role}</p>
                   </div>
-                ))}
-              </div>
+                  <Users className="w-4 h-4 text-muted-foreground" />
+                </div>
+              ))}
             </div>
+          </div>
         </SectionCard>
 
         {/* Compliance */}

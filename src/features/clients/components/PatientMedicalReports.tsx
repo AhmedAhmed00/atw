@@ -3,8 +3,8 @@
  * Displays post-trip medical reports with healthcare-grade UI
  */
 
-import { 
-  FileText, 
+import {
+  FileText,
   Activity,
   Heart,
   Wind,
@@ -23,8 +23,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { SectionCard } from '@/components/shared/SectionCard'
-import { InfoItem } from '@/components/shared/InfoItem'
+import { SectionCard } from '@/components/ui/section-card'
+import { InfoItem } from '@/components/ui/InfoItem'
 import { generateMedicalReports, calculateReportStats, type MedicalReport } from '../data/mockMedicalReportsData'
 import { cn } from '@/lib/utils'
 
@@ -288,9 +288,9 @@ export function PatientMedicalReports({ patientId }: PatientMedicalReportsProps)
   return (
     <div className="space-y-6">
       {/* Summary Cards */}
-      <StatsCardGrid 
-        cards={summaryCards} 
-        columns={{ default: 1, sm: 2, lg: 3 }} 
+      <StatsCardGrid
+        cards={summaryCards}
+        columns={{ default: 1, sm: 2, lg: 3 }}
       />
 
       {/* Reports List */}

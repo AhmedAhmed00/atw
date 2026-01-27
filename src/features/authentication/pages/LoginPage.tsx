@@ -18,7 +18,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Loader2, Eye, EyeOff, CheckCircle2 } from 'lucide-react'
-import { Logo } from '@/components/shared/Logo'
+import { Logo } from '@/components/ui/logo'
 import { RootState } from '@/core/store'
 
 export default function LoginPage() {
@@ -73,7 +73,7 @@ export default function LoginPage() {
         <CardHeader className="space-y-4 text-center pb-6">
           {/* Logo */}
           <Logo variant="login" size="lg" className="justify-center" />
-          
+
           <div>
             <CardTitle className="text-3xl font-bold bg-linear-to-r from-[#09B0B6] to-[#05647A] bg-clip-text text-transparent">
               Welcome Back

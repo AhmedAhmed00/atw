@@ -3,7 +3,7 @@
  * Centralized status badge configurations for consistency
  */
 
-import { StatusConfig } from '@/components/shared/StatusBadge'
+import { StatusConfig } from '@/components/ui/status-bage'
 
 /**
  * Patient status configuration

@@ -16,7 +16,7 @@ import { AddPatientFormData } from '../../../schemas/addPatientSchema'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Badge } from '@/components/ui/badge'
-import { InfoItem } from '@/components/shared/InfoItem'
+import { InfoItem } from '@/components/ui/InfoItem'
 import { User, Calendar, Hash, Activity, Heart, Ruler, Weight, Building2, Phone, MapPin, CheckCircle2 } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
@@ -177,58 +177,58 @@ export function Step6Summary() {
         formValues.equipmentNeeded?.length > 0 ||
         formValues.interpreterRequired === 'Yes' ||
         formValues.escortRequired === 'Yes') && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base">Accessibility & Equipment</CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {formValues.accessibilityConstraints && formValues.accessibilityConstraints.length > 0 && (
-              <div>
-                <span className="text-xs font-medium text-muted-foreground uppercase mb-2 block">
-                  Accessibility Constraints
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {formValues.accessibilityConstraints.map((constraint: string) => (
-                    <Badge key={constraint} variant="outline">
-                      {constraint}
-                    </Badge>
-                  ))}
+          <Card>
+            <CardHeader>
+              <CardTitle className="text-base">Accessibility & Equipment</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {formValues.accessibilityConstraints && formValues.accessibilityConstraints.length > 0 && (
+                <div>
+                  <span className="text-xs font-medium text-muted-foreground uppercase mb-2 block">
+                    Accessibility Constraints
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {formValues.accessibilityConstraints.map((constraint: string) => (
+                      <Badge key={constraint} variant="outline">
+                        {constraint}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            )}
-            {formValues.equipmentNeeded && formValues.equipmentNeeded.length > 0 && (
-              <div>
-                <span className="text-xs font-medium text-muted-foreground uppercase mb-2 block">
-                  Equipment Needed
-                </span>
-                <div className="flex flex-wrap gap-2">
-                  {formValues.equipmentNeeded.map((equipment: string) => (
-                    <Badge key={equipment} variant="outline" className="border-[#09B0B6] text-[#05647A]">
-                      {equipment}
-                    </Badge>
-                  ))}
+              )}
+              {formValues.equipmentNeeded && formValues.equipmentNeeded.length > 0 && (
+                <div>
+                  <span className="text-xs font-medium text-muted-foreground uppercase mb-2 block">
+                    Equipment Needed
+                  </span>
+                  <div className="flex flex-wrap gap-2">
+                    {formValues.equipmentNeeded.map((equipment: string) => (
+                      <Badge key={equipment} variant="outline" className="border-[#09B0B6] text-[#05647A]">
+                        {equipment}
+                      </Badge>
+                    ))}
+                  </div>
                 </div>
+              )}
+              <div className="grid gap-4 md:grid-cols-2">
+                {formValues.interpreterRequired === 'Yes' && (
+                  <InfoItem
+                    icon={Phone}
+                    label="Interpreter Required"
+                    value={formValues.preferredLanguage || 'N/A'}
+                  />
+                )}
+                {formValues.escortRequired === 'Yes' && (
+                  <InfoItem
+                    icon={User}
+                    label="Escort Required"
+                    value="Yes"
+                  />
+                )}
               </div>
-            )}
-            <div className="grid gap-4 md:grid-cols-2">
-              {formValues.interpreterRequired === 'Yes' && (
-                <InfoItem
-                  icon={Phone}
-                  label="Interpreter Required"
-                  value={formValues.preferredLanguage || 'N/A'}
-                />
-              )}
-              {formValues.escortRequired === 'Yes' && (
-                <InfoItem
-                  icon={User}
-                  label="Escort Required"
-                  value="Yes"
-                />
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      )}
+            </CardContent>
+          </Card>
+        )}
 
       {/* Contact & Address */}
       <Card>
