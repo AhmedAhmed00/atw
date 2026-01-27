@@ -23,31 +23,31 @@ export function FleetOverviewCards({ stats }: FleetOverviewCardsProps) {
       title: 'Institutions',
       value: stats.institutions.toString(),
       icon: Building2,
-      colorVariant: 'secondary',
+      colorVariant: 'primary',
     },
     {
       title: 'Active Trips',
       value: stats.activeTrips.toString(),
       icon: MapPin,
-      colorVariant: 'info',
+      colorVariant: 'primary',
     },
     {
       title: 'Completed Today',
       value: stats.completedToday.toString(),
       icon: CheckCircle2,
-      colorVariant: 'success',
+      colorVariant: 'primary',
     },
     {
       title: 'Fleet Active',
       value: `${stats.fleetActive}/30`,
       icon: Truck,
-      colorVariant: 'info',
+      colorVariant: 'primary',
     },
     {
       title: 'Avg Response',
       value: stats.avgResponse,
       icon: Clock,
-      colorVariant: 'warning',
+      colorVariant: 'primary',
     },
   ]
 

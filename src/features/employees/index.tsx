@@ -23,9 +23,9 @@ export function EmployeesPage() {
   const [rejectDialogOpen, setRejectDialogOpen] = useState(false)
   const [selectedApproval, setSelectedApproval] = useState<PendingApproval | null>(null)
   const [isProcessing, setIsProcessing] = useState(false)
-  
+
   const activeTab = searchParams.get('tab') || 'all-employees'
-  
+
   const employeeStats = calculateEmployeeStats(mockEmployees)
   const pendingApprovalStats = calculatePendingApprovalStats(mockPendingApprovals)
 
@@ -44,7 +44,7 @@ export function EmployeesPage() {
 
   const handleRejectConfirm = async (reason: string) => {
     if (!selectedApproval) return
-    
+
     setIsProcessing(true)
     // TODO: Implement reject logic with reason
     await new Promise((resolve) => setTimeout(resolve, 1000))
@@ -92,14 +92,14 @@ export function EmployeesPage() {
       {/* Tabs */}
       <Tabs value={activeTab} onValueChange={handleTabChange} className="space-y-6">
         <TabsList className="w-full justify-start h-auto p-1 bg-transparent rounded-xl flex-wrap gap-2">
-          <TabsTrigger 
+          <TabsTrigger
             value="all-employees"
             className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
           >
             <Users className="h-4 w-4" />
             All Employees
           </TabsTrigger>
-          <TabsTrigger 
+          <TabsTrigger
             value="pending-approvals"
             className="gap-2 relative border border-border px-6 py-3 rounded-lg font-semibold transition-all data-[state=active]:bg-linear-to-r data-[state=active]:from-[#09B0B6] data-[state=active]:to-[#05647A] data-[state=active]:text-white data-[state=active]:shadow-lg hover:bg-accent"
           >
@@ -123,9 +123,9 @@ export function EmployeesPage() {
           {/* Pending Approvals Table */}
           <Card className="border-none bg-transparent shadow-none hover:shadow-none">
             <CardContent className="px-0">
-              <DataTable 
-                columns={getPendingApprovalsColumns({ navigate, onReject: handleRejectClick })} 
-                data={mockPendingApprovals} 
+              <DataTable
+                columns={getPendingApprovalsColumns({ navigate, onReject: handleRejectClick })}
+                data={mockPendingApprovals}
               />
             </CardContent>
           </Card>

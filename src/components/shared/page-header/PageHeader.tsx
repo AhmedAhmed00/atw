@@ -32,7 +32,7 @@ export function PageHeader({ title, description, icon: Icon, action, children }:
           hover:opacity-90 text-white shadow-lg shadow-[rgb(var(--brand-primary))]/30 group text-[16px]"
         >
           {action.icon && (
-              <action.icon size={32} />
+            <action.icon size={32} />
           )}
           {action.label}
         </Button>

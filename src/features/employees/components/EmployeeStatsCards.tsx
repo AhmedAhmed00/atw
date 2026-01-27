@@ -1,9 +1,9 @@
 import { EmployeeStats } from '../types'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { 
-  Users, 
-  UserCheck, 
-  UserX, 
+import {
+  Users,
+  UserCheck,
+  UserX,
   Clock
 } from 'lucide-react'
 
@@ -24,7 +24,7 @@ export function EmployeeStatsCards({ stats }: EmployeeStatsCardsProps) {
       title: 'Active',
       value: stats.active,
       icon: UserCheck,
-      colorVariant: 'success',
+      colorVariant: 'primary',
       trend: {
         value: 5.2,
         label: 'vs last month',
@@ -35,13 +35,13 @@ export function EmployeeStatsCards({ stats }: EmployeeStatsCardsProps) {
       title: 'On Leave',
       value: stats.onLeave,
       icon: UserX,
-      colorVariant: 'warning',
+      colorVariant: 'primary',
     },
     {
       title: 'Pending Approvals',
       value: stats.pendingApprovals,
       icon: Clock,
-      colorVariant: 'info',
+      colorVariant: 'primary',
     },
   ]
 

@@ -1,8 +1,8 @@
 import { PendingApprovalStats } from '../types'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { 
-  FileSearch, 
-  FileCheck, 
+import {
+  FileSearch,
+  FileCheck,
   Clock
 } from 'lucide-react'
 
@@ -16,14 +16,14 @@ export function PendingApprovalsCards({ stats }: PendingApprovalsCardsProps) {
       title: 'Pending Review',
       value: stats.pendingReview,
       icon: FileSearch,
-      colorVariant: 'warning',
+      colorVariant: 'primary',
       description: 'Awaiting initial review',
     },
     {
       title: 'Partially Approved',
       value: stats.partiallyApproved,
       icon: FileCheck,
-      colorVariant: 'info',
+      colorVariant: 'primary',
       description: 'Partially processed',
     },
     {
