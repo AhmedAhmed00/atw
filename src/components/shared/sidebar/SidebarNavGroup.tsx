@@ -22,10 +22,10 @@ interface SidebarNavGroupProps {
 
 export function SidebarNavGroup({ section }: SidebarNavGroupProps) {
   const location = useLocation()
-  
+
   // Check if any item in this section is active
   const hasActiveItem = section.items.some(item => location.pathname === item.url)
-  
+
   // All sections start open by default, but ensure active sections stay open
   const [isOpen, setIsOpen] = useState(true)
 

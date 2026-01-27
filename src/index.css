@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 :root {
-  --background: oklch(0.9703 0.01 238.51);
+  --background: 255 255 255;
   --foreground: oklch(0.2500 0.0150 220);
   --card: oklch(0.9950 0.0050 205);
   --card-foreground: oklch(0.2500 0.0150 220);
@@ -42,7 +42,7 @@
   --chart-3: oklch(0.7000 0.1400 195);
   --chart-4: oklch(0.7316 0 0);
   --chart-5: oklch(0.4568 0 0);
-  --sidebar: 234 252 253;
+  --sidebar: 241 242 247;
   --sidebar-foreground: 30 41 59;
   --sidebar-primary: 9 176 182;
   --sidebar-primary-foreground: 255 255 255;
@@ -421,12 +421,12 @@
 
 /* Sidebar content spacing */
 [data-sidebar="content"] {
-  scrollbar-width:thin;
+  /* scrollbar-width: thin; */
   scrollbar-color: rgba(9, 176, 182, 0.3) transparent;
 }
 
 [data-sidebar="content"]::-webkit-scrollbar {
-  width: 6px;
+  width: 3px;
 }
 
 [data-sidebar="content"]::-webkit-scrollbar-track {
@@ -435,7 +435,7 @@
 
 [data-sidebar="content"]::-webkit-scrollbar-thumb {
   background: rgba(9, 176, 182, 0.3);
-  border-radius: 3px;
+  border-radius: 1px;
 }
 
 [data-sidebar="content"]::-webkit-scrollbar-thumb:hover {
@@ -503,8 +503,8 @@
 }
 
 .sidebar-icon{ 
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   padding: 0px;
   margin-block-end: 2px;
 }
@@ -532,3 +532,6 @@ select:focus-visible,
   border-color: var(--input-focus-border-color) !important;
   box-shadow: 0 0 0 var(--input-focus-ring-width) var(--input-focus-ring-color) !important;
 }
+
+
+

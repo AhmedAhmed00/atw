@@ -6,7 +6,8 @@ import { HourlyTripVolumeChartProps } from '../types'
 
 export function HourlyTripVolumeChart({ data }: HourlyTripVolumeChartProps) {
   return (
-    <Card className="border-t-4 border-t-[#09B0B6]">
+    // <Card className="border-t-4 border-t-[#09B0B6]">
+    <Card className="">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl text-[#05647A] dark:text-[#09B0B6]">
           Hourly Trip Volume (24h)

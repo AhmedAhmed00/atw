@@ -40,19 +40,19 @@ const getPageTitle = (pathname: string): string => {
     '/attendance': 'Attendance',
     '/tasks': 'Tasks',
   }
-  
+
   // Check for exact match first
   if (routes[pathname]) {
     return routes[pathname]
   }
-  
+
   // Check for prefix match (for nested routes like /appointments/details/1)
   for (const [route, title] of Object.entries(routes)) {
     if (pathname.startsWith(route) && route !== '/') {
       return title
     }
   }
-  
+
   return 'Page'
 }
 
@@ -64,14 +64,13 @@ export function Layout({ children }: LayoutProps) {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 ">
+        <header className="flex h-16 shrink-0 items-center  border-b border-sidebar py-10 px-8 ">
           <SidebarTrigger className="-ml-1" />
           <Separator orientation="vertical" className="mr-2 h-4" />
           <Breadcrumb>
             <BreadcrumbList>
-              <BreadcrumbItem className="hidden md:block">
+              <BreadcrumbItem className="hidden md:block text-[15px] font-semibold">
                 <BreadcrumbLink href="/" className="flex items-center">
-                  <Logo variant="header" size="sm" showText={false} className="mr-2" />
                   <span className="ml-2">All The Way</span>
                 </BreadcrumbLink>
               </BreadcrumbItem>
@@ -86,7 +85,7 @@ export function Layout({ children }: LayoutProps) {
             <ModeToggle />
           </div>
         </header>
-        <main className="flex flex-1 flex-col gap-4 px-6 py-6">
+        <main className="flex flex-1 flex-col gap-4  px-8 py-5">
           {children}
         </main>
       </SidebarInset>

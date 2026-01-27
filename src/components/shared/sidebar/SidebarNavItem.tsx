@@ -10,14 +10,14 @@ interface SidebarNavItemProps {
 export function SidebarNavItem({ item, isActive }: SidebarNavItemProps) {
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton 
-        asChild 
+      <SidebarMenuButton
+        asChild
         isActive={isActive}
         className="rounded-lg transition-all duration-200"
       >
-        <Link to={item.url} className="gap-2.5 items-center">
-          <item.icon className="h-5 w-5 shrink-0 sidebar-icon" />
-          <span className="text-[15px] tracking-wide group-data-[collapsible=icon]:hidden">{item.title}</span>
+        <Link to={item.url} className=" items-center">
+          <item.icon className=" shrink-0 sidebar-icon" />
+          <span className=" text-[17px] font-semibold tracking-wide group-data-[collapsible=icon]:hidden">{item.title}</span>
         </Link>
       </SidebarMenuButton>
     </SidebarMenuItem>

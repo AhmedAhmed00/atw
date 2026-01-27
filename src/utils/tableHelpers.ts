@@ -28,10 +28,10 @@ export function createStatusColumn<T>(
     accessorKey: typeof accessor === 'string' ? accessor : undefined,
     header,
     cell: ({ row }) => {
-      const status = typeof accessor === 'function' 
+      const status = typeof accessor === 'function'
         ? accessor(row.original)
         : (row.getValue(String(accessor)) as string)
-      return <StatusBadge status={status} config={config} />
+      return <StatusBadge status={ status } config = { config } />
     },
   }
 }
@@ -54,30 +54,33 @@ export function createActionColumn<T>(
     cell: ({ row }) => {
       return (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-8 w-8 p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreVertical className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            {actions.map((action, index) => {
-              const Icon = action.icon
-              return (
-                <DropdownMenuItem
-                  key={index}
-                  onClick={() => action.onClick(row.original)}
-                  className={action.variant === 'destructive' ? 'text-destructive' : ''}
-                >
-                  {Icon && <Icon className="mr-2 h-4 w-4" />}
-                  {action.label}
-                </DropdownMenuItem>
+        <DropdownMenuTrigger asChild >
+        <Button variant= "ghost" className = "h-8 w-8 p-0" >
+          <span className="sr-only" > Open menu </span>
+            < MoreVertical className = "h-4 w-4" />
+              </Button>
+              </DropdownMenuTrigger>
+              < DropdownMenuContent align = "end" >
+              {
+                actions.map((action, index) => {
+                  const Icon = action.icon
+                  return (
+                    <DropdownMenuItem
+                  key= { index }
+                  onClick = {() => action.onClick(row.original)
+                }
+                  className = { action.variant === 'destructive' ? 'text-destructive' : '' }
+                  >
+                  { Icon && <Icon className="mr-2 h-4 w-4" />}
+      { action.label }
+      </DropdownMenuItem>
               )
-            })}
-          </DropdownMenuContent>
-        </DropdownMenu>
+    })
+  }
+    </DropdownMenuContent>
+    </DropdownMenu>
       )
-    },
+},
   }
 }
 
@@ -99,11 +102,12 @@ export function createLinkColumn<T>(
         : (row.getValue(String(accessor)) as string)
       const href = getHref(value, row.original)
       return (
-        <Link to={href} className={`text-[#09B0B6] hover:underline ${className || ''}`}>
-          {value}
-        </Link>
+        <Link to= { href } className = {`text-[#09B0B6] hover:underline ${className || ''}`
+    }>
+    { value }
+    </Link>
       )
-    },
+},
   }
 }
 
@@ -122,13 +126,13 @@ export function createDateColumn<T>(
       const date = typeof accessor === 'function'
         ? accessor(row.original)
         : (row.getValue(String(accessor)) as string | Date)
-      
+
       if (!date) return '-'
-      
+
       if (formatFn) {
         return formatFn(date)
       }
-      
+
       // Default formatting
       try {
         const dateObj = typeof date === 'string' ? new Date(date) : date
@@ -155,9 +159,9 @@ export function createCurrencyColumn<T>(
       const amount = typeof accessor === 'function'
         ? accessor(row.original)
         : (row.getValue(String(accessor)) as number)
-      
+
       if (amount === null || amount === undefined) return '-'
-      
+
       return new Intl.NumberFormat('en-US', {
         style: 'currency',
         currency,

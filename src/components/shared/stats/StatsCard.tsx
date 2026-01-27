@@ -19,7 +19,8 @@ const colorConfig: Record<ColorVariant, {
     bgGradient: GRADIENTS.primary.bgGradient,
     iconBg: `bg-linear-to-br ${GRADIENTS.primary.gradient}`,
     iconColor: 'text-white',
-    border: 'border-l-[rgb(var(--brand-primary))]',
+    // border: 'border-l-[rgb(var(--brand-primary))]',
+    border: '',
     shadow: 'hover:shadow-[rgb(var(--brand-primary))]/20',
     text: GRADIENTS.primary.gradient,
   },
@@ -99,7 +100,8 @@ export function StatsCard({
   return (
     <Card
       className={cn(
-        'relative overflow-hidden border-l-3 transition-all duration-300 ',
+        // 'relative overflow-hidden border-l-3 transition-all duration-300 ',
+        'relative overflow-hidden  transition-all duration-300 ',
         'hover:shadow-lg ',
         colors.border,
         colors.shadow
@@ -113,8 +115,8 @@ export function StatsCard({
         )}
       />
 
-      <CardHeader className="relative p-3 py-4 flex flex-row justify-between items-center space-y-0 pb-0">
-        <div className="space-y-1">
+      <CardHeader className="  relative p-3 py-4 flex flex-row justify-between items-center space-y-0 pb-0">
+        <div className="space-y-1 ">
           <p className="text-[17px] font-medium text-muted-foreground">{title}</p>
         </div>
         {Icon && (

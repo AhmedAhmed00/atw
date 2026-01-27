@@ -6,26 +6,25 @@ export function ModeToggle() {
 
   return (
     <div className="relative">
-      <div className="absolute inset-0 bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) rounded-full opacity-20 blur-xl" />
-      
-      <div className="relative flex items-center gap-1 p-1 rounded-full backdrop-blur-md bg-white/80 dark:bg-slate-900/80 
-      dark:border-2  dark:border-[rgb(var(--bg-primary)]/30 dark:border-[rgb(var(--brand-primary))]/30 shadow-lg shadow-[rgb(var(--brand-primary))]/20 dark:shadow-[rgb(var(--brand-primary))]/30">
+      <div className="absolute inset-0 bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) rounded-sm opacity-20 blur-xl" />
+
+      <div className="relative flex items-center gap-1 p-1 rounded-sm backdrop-blur-md  dark:bg-slate-900/80 
+      dark:border-2  dark:border-[rgb(var(--bg-primary)]/30 dark:border-[rgb(var(--brand-primary))]/30
+       border border-[rgb(var(--brand-primary))]/30  shadow-[rgb(var(--brand-primary))]/20 dark:shadow-[rgb(var(--brand-primary))]/30">
         <button
           onClick={() => setTheme('light')}
-          className={`relative group flex items-center justify-center w-7 h-7 rounded-full transition-all duration-500 ease-out ${
-            theme === 'light' 
-              ? 'bg-linear-to-br from-(--brand-gradient-from) to-(--brand-gradient-to) shadow-lg shadow-[rgb(var(--brand-primary))]/40 scale-110' 
-              : 'hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105'
-          }`}
+          className={`relative group flex items-center justify-center w-7 h-7 rounded-sm transition-all duration-500 ease-out ${theme === 'light'
+            ? 'bg-linear-to-br from-(--brand-gradient-from) to-(--brand-gradient-to) shadow-sm shadow-[rgb(var(--brand-primary))]/40 scale-110'
+            : 'hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105'
+            }`}
           aria-label="Light mode"
         >
-          <Sun className={`w-4 h-4 transition-all duration-500 ${
-            theme === 'light' 
-              ? 'text-white rotate-0 scale-100' 
-              : 'text-[rgb(var(--brand-secondary))] dark:text-slate-400 rotate-90 scale-90 group-hover:rotate-180 group-hover:scale-100'
-          }`} />
+          <Sun className={`w-4 h-4 transition-all duration-500 ${theme === 'light'
+            ? 'text-white rotate-0 scale-100'
+            : 'text-[rgb(var(--brand-secondary))] dark:text-slate-400 rotate-90 scale-90 group-hover:rotate-180 group-hover:scale-100'
+            }`} />
           {theme === 'light' && (
-            <span className="absolute inset-0 rounded-full">
+            <span className="absolute inset-0 rounded-sm">
               {[...Array(8)].map((_, i) => (
                 <span
                   key={i}
@@ -42,40 +41,36 @@ export function ModeToggle() {
 
         <button
           onClick={() => setTheme('system')}
-          className={`relative group flex items-center justify-center w-7 h-7 rounded-full transition-all duration-500 ease-out ${
-            theme === 'system' 
-              ? 'bg-linear-to-br from-(--brand-gradient-from) to-(--brand-gradient-to) shadow-lg shadow-[rgb(var(--brand-primary))]/40 scale-110' 
-              : 'hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105'
-          }`}
+          className={`relative group flex items-center justify-center w-7 h-7 rounded-sm transition-all duration-500 ease-out ${theme === 'system'
+            ? 'bg-linear-to-br from-(--brand-gradient-from) to-(--brand-gradient-to)  shadow-[rgb(var(--brand-primary))]/40 scale-110'
+            : 'hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105'
+            }`}
           aria-label="System theme"
         >
-          <Sparkles className={`w-4 h-4 transition-all duration-500 ${
-            theme === 'system' 
-              ? 'text-white scale-100' 
-              : 'text-[rgb(var(--brand-secondary))] dark:text-slate-400 scale-90 group-hover:scale-100'
-          }`} />
+          <Sparkles className={`w-4 h-4 transition-all duration-500 ${theme === 'system'
+            ? 'text-white scale-100'
+            : 'text-[rgb(var(--brand-secondary))] dark:text-slate-400 scale-90 group-hover:scale-100'
+            }`} />
         </button>
 
         <button
           onClick={() => setTheme('dark')}
-          className={`relative group flex items-center justify-center w-7 h-7 rounded-full transition-all duration-500 ease-out overflow-hidden ${
-            theme === 'dark' 
-              ? 'bg-linear-to-br from-(--brand-gradient-from) to-(--brand-gradient-to) shadow-lg shadow-[rgb(var(--brand-primary))]/40 scale-110' 
-              : 'hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105'
-          }`}
+          className={`relative group flex items-center justify-center w-7 h-7 rounded-sm transition-all duration-500 ease-out overflow-hidden ${theme === 'dark'
+            ? 'bg-linear-to-br from-(--brand-gradient-from) to-(--brand-gradient-to) shadow-l shadow-[rgb(var(--brand-primary))]/40 scale-110'
+            : 'hover:bg-slate-100 dark:hover:bg-slate-800 hover:scale-105'
+            }`}
           aria-label="Dark mode"
         >
-          <Moon className={`w-4 h-4 transition-all duration-500 ${
-            theme === 'dark' 
-              ? 'text-white -rotate-12 scale-100' 
-              : 'text-[rgb(var(--brand-secondary))] dark:text-slate-400 rotate-90 scale-90 group-hover:-rotate-12 group-hover:scale-100'
-          }`} />
+          <Moon className={`w-4 h-4 transition-all duration-500 ${theme === 'dark'
+            ? 'text-white -rotate-12 scale-100'
+            : 'text-[rgb(var(--brand-secondary))] dark:text-slate-400 rotate-90 scale-90 group-hover:-rotate-12 group-hover:scale-100'
+            }`} />
           {theme === 'dark' && (
             <>
               {[...Array(3)].map((_, i) => (
                 <span
                   key={i}
-                  className="absolute w-0.5 h-0.5 bg-white rounded-full"
+                  className="absolute w-0.5 h-0.5 bg-white rounded-sm"
                   style={{
                     top: `${20 + i * 20}%`,
                     left: `${15 + i * 25}%`,

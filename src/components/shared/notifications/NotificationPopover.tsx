@@ -149,13 +149,17 @@ export function NotificationPopover() {
       <PopoverTrigger asChild>
         <Button
           variant="ghost"
+
           size="icon"
-          className="relative"
+          className="relative w-9 h-9 rounded-sm 
+           dark:bg-slate-900/80  border border-[rgb(var(--brand-primary))]/30 
+            dark:shadow-[rgb(var(--brand-primary))]/30 hover:bg-slate-100
+             dark:hover:bg-slate-800 transition-all duration-300"
           aria-label="Notifications"
         >
-          <Bell className="h-5 w-5" />
+          <Bell className="h-4 w-4 bg-transparent text-[rgb(var(--brand-secondary))] dark:text-slate-400" />
           {unreadCount > 0 && (
-            <span className="absolute -top-0.5 -right-0.5 h-5 w-5 rounded-full bg-[rgb(var(--brand-primary))] text-white text-xs font-medium flex items-center justify-center">
+            <span className="absolute -top-1.5 -left-1.5 h-5 w-5 rounded-full bg-[rgb(var(--brand-primary))] text-white text-xs font-medium flex items-center justify-center">
               {unreadCount > 9 ? '9+' : unreadCount}
             </span>
           )}
@@ -193,7 +197,7 @@ export function NotificationPopover() {
         <ScrollArea className="h-[400px]">
           {notifications.length === 0 ? (
             <div className="flex flex-col items-center justify-center py-12 px-4">
-              <div className="p-4 rounded-full bg-slate-100 dark:bg-slate-800 mb-3">
+              <div className="p-4 rounded-sm bg-slate-100 dark:bg-slate-800 mb-3">
                 <Bell className="h-8 w-8 text-slate-400" />
               </div>
               <p className="font-medium text-slate-900 dark:text-slate-100">

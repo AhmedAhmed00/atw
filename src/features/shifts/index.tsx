@@ -41,7 +41,7 @@ export function ShiftsPage() {
             <TabsTrigger value="all-shifts">All Shifts</TabsTrigger>
             <TabsTrigger value="swap-requests">Swap Requests</TabsTrigger>
           </TabsList>
-          
+
           {/* View Toggle - Only show for All Shifts tab */}
           {activeTab === 'all-shifts' && (
             <ViewToggle value={viewMode} onChange={setViewMode} />
@@ -88,7 +88,7 @@ export function ShiftsPage() {
               New Swap Request
             </Button>
           </div>
-          
+
           <Card className="border-none bg-transparent shadow-none hover:shadow-none">
             <CardContent className="px-0">
               <SwapRequestsTable swapRequests={mockSwapRequests} />

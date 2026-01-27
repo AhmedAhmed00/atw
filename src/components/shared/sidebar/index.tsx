@@ -20,23 +20,23 @@ export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
 
   return (
     <Sidebar {...props} collapsible="icon">
-      <SidebarHeader className="px-4 pt-4 pb-3 border-b border-sidebar-border/50">
+      <SidebarHeader className=" pt-4  ">
         <SidebarLogo />
       </SidebarHeader>
 
-      <SidebarContent className="px-3 py-2 ">
+      <SidebarContent className="px-3 py-4 ">
         {navigationSections.map((section) => (
           <div key={section.label}>
             <SidebarNavGroup section={section} />
-            
+
           </div>
         ))}
       </SidebarContent>
 
-      <SidebarFooter className="p-4 border-t border-sidebar-border/50 bg-sidebar/50">
+      {/* <SidebarFooter className="p-4 border-t border-sidebar-border/50 bg-sidebar/50">
         <SidebarMenu>
           <SidebarMenuItem>
-         
+
 
             <Button
               onClick={handleLogout}
@@ -48,7 +48,7 @@ export function AppSidebar(props: ComponentProps<typeof Sidebar>) {
             </Button>
           </SidebarMenuItem>
         </SidebarMenu>
-      </SidebarFooter>
+      </SidebarFooter> */}
     </Sidebar>
   )
 }

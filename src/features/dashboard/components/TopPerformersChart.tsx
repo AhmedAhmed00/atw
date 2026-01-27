@@ -10,7 +10,8 @@ const COLORS = ['#09B0B6', '#05647A', '#266BAC', '#3DCCD0', '#63A7D8', '#86E2DD'
 
 export function TopPerformersChart({ data }: TopPerformersChartProps) {
   return (
-    <Card className="border-t-4 border-t-[#09B0B6]">
+    // <Card className="border-t-4 border-t-[#09B0B6]">
+    <Card className="">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl text-[#05647A] dark:text-[#09B0B6]">
           Top Performers
@@ -24,22 +25,22 @@ export function TopPerformersChart({ data }: TopPerformersChartProps) {
           <ResponsiveContainer width="100%" height={300} minHeight={250}>
             <BarChart data={data} layout="vertical">
               <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" className="dark:stroke-slate-700" />
-              <XAxis 
+              <XAxis
                 type="number"
                 stroke="#6b7280"
                 className="dark:stroke-slate-400"
                 style={{ fontSize: '12px' }}
               />
-              <YAxis 
-                dataKey="name" 
+              <YAxis
+                dataKey="name"
                 type="category"
                 stroke="#6b7280"
                 className="dark:stroke-slate-400"
                 style={{ fontSize: '12px' }}
                 width={100}
               />
-              <Tooltip 
-                contentStyle={{ 
+              <Tooltip
+                contentStyle={{
                   backgroundColor: 'white',
                   border: '1px solid #e5e7eb',
                   borderRadius: '8px',

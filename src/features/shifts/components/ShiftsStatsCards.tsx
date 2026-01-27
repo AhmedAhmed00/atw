@@ -1,9 +1,9 @@
 import { Shift, SwapRequest } from '../types'
 import { StatsCardGrid, StatsCardProps } from '@/components/shared/stats'
-import { 
-  Calendar, 
-  CalendarCheck, 
-  CalendarX, 
+import {
+  Calendar,
+  CalendarCheck,
+  CalendarX,
   Clock
 } from 'lucide-react'
 
@@ -29,7 +29,7 @@ export function ShiftsStatsCards({ shifts, swapRequests }: ShiftsStatsCardsProps
       title: 'Open Shifts',
       value: openShifts,
       icon: CalendarCheck,
-      colorVariant: 'success',
+      colorVariant: 'primary',
       trend: {
         value: 8.5,
         label: 'vs last month',
@@ -40,13 +40,13 @@ export function ShiftsStatsCards({ shifts, swapRequests }: ShiftsStatsCardsProps
       title: 'Closed Shifts',
       value: closedShifts,
       icon: CalendarX,
-      colorVariant: 'info',
+      colorVariant: 'primary',
     },
     {
       title: 'Pending Swaps',
       value: pendingSwaps,
       icon: Clock,
-      colorVariant: 'warning',
+      colorVariant: 'primary',
     },
   ]
 

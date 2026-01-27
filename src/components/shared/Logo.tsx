@@ -92,7 +92,7 @@ export function Logo({ variant = 'default', className, showText = true, size = '
         </div>
         {showText && (
           <div className="flex flex-col group-data-[collapsible=icon]:hidden">
-            <span className={cn('font-bold leading-tight', config.text, isDark ? 'text-white' : 'text-[#103454]')}>
+            <span className={cn('font-bold  leading-tight', config.text, isDark ? 'text-white' : 'text-[#103454]')}>
               All The Way
             </span>
             <span className={cn('font-medium uppercase tracking-wider', config.subtitle, isDark ? 'text-[#86E2DD]' : 'text-[#05647A]')}>

@@ -1,5 +1,5 @@
-import { 
-  Appointment, 
+import {
+  Appointment,
   DashboardStats,
   FleetOverviewStats,
   HourlyTripData,

@@ -3,7 +3,6 @@ import {
   Users,
   Cog,
   Calendar,
-  ClipboardCheck,
   CheckSquare,
   Building2,
   UserCheck,
@@ -11,6 +10,7 @@ import {
   Route,
   Receipt,
   MessageSquare,
+  CalendarCheck,
 } from "lucide-react"
 import type { NavSection } from "./types"
 
@@ -41,7 +41,7 @@ export const navigationSections: NavSection[] = [
       {
         title: "Attendance",
         url: "/attendance",
-        icon: ClipboardCheck,
+        icon: CalendarCheck,
       },
       {
         title: "Tasks",

@@ -55,7 +55,8 @@ export const LiveFleetTracking = memo(function LiveFleetTracking({ vehicles }: L
   const { center, bounds } = useMemo(() => calculateMapBounds(vehicles), [vehicles])
 
   return (
-    <Card className="border-t-4 border-t-[#09B0B6] w-full">
+    // <Card className="border-t-4 border-t-[#09B0B6] w-full">
+    <Card className="">
       <CardHeader>
         <CardTitle className="text-lg md:text-xl text-[#05647A] dark:text-[#09B0B6]">
           Live Fleet Tracking

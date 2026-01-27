@@ -37,10 +37,20 @@ export function DashboardPage() {
     <div className="space-y-4 md:space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) bg-clip-text text-transparent">
+        <h1
+          style={{
+            fontSize: '38px',
+          }}
+          className="text-2xl sm:text-3xl md:text-4xl font-bold 
+          tracking-tight bg-linear-to-r from-(--brand-gradient-from) to-(--brand-gradient-to) pb-1 bg-clip-text text-transparent">
           Real-time Operations Dashboard - All Systems Online
         </h1>
-        <p className="text-muted-foreground mt-1 md:mt-2 text-sm md:text-base">
+        <p
+          style={{
+            fontSize: '22px',
+          }}
+
+          className="text-muted-foreground mt-1 md:mt-2 text-sm md:text-base">
           Real-time monitoring and analytics for your fleet operations.
         </p>
       </div>

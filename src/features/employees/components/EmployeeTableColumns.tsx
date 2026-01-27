@@ -28,7 +28,7 @@ export const employeeColumns: ColumnDef<Employee>[] = [
         .join('')
         .toUpperCase()
         .slice(0, 2)
-      
+
       return (
         <Link to={`/employees/${employee.id}`} className="flex items-center gap-3 hover:opacity-80 transition-opacity">
           <Avatar className="h-9 w-9">
@@ -73,9 +73,9 @@ export const employeeColumns: ColumnDef<Employee>[] = [
           className: 'border-[#09B0B6] text-[#05647A]',
         },
       }
-      
+
       const config = statusConfig[status as keyof typeof statusConfig] || statusConfig.pending
-      
+
       return (
         <Badge variant={config.variant} className={cn('border', config.className)}>
           {config.label}
